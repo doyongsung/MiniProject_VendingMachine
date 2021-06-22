@@ -18,7 +18,7 @@ public class SalesAmount {
 
 	// 총매출액 출력 메소드
 	// DAO 에서 데이터 리스트를 받고 출력 처리
-	void totalLisr() {
+	void totalList() {
 		// Connection 객체 생성 -> 트렌젝션 처리
 		Connection conn = null;
 
@@ -31,7 +31,7 @@ public class SalesAmount {
 
 			List<ProductList> list = dao.getProductList(conn);
 
-			System.out.println("부서 정보 리스트");
+			System.out.println("총 매출 리스트");
 			System.out.println("------------------------------------");
 			System.out.println("부서번호 \t 부서이름 \t 위치");
 			System.out.println("------------------------------------");
