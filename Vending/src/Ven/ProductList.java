@@ -1,5 +1,7 @@
 package Ven;
 
+import java.util.Arrays;
+
 public class ProductList {
 	
 	private	int drinkName;
@@ -34,6 +36,12 @@ public class ProductList {
 
 	public void setDrinkStock(int drinkStock) {
 		this.drinkStock = drinkStock;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductList [drinkName=" + drinkName + ", drinkPrice=" + Arrays.toString(drinkPrice) + ", drinkStock="
+				+ drinkStock + "]";
 	}
 
 
