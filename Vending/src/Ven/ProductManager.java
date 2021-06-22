@@ -57,13 +57,13 @@ public class ProductManager {
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			
-			System.out.println("부서 정보를 입력합니다.");
-			System.out.println("부서이름 부서위치 형식으로 입력해주세요.");
-			System.out.println("ex) dev seoul");
+			System.out.println("음료 정보를 입력합니다.");
+			System.out.println("음료이름 음료가격 재고 음료번호 순으로 입력해주세요");
+			System.out.println("ex) 음료수 2000 20 1");
 			String inputData = sc.nextLine();
 			String[] deptdata = inputData.split(" ");
 			
-			ProductList pList = new ProductList(0, deptdata[0], 0, 0);
+			ProductList pList = new ProductList(0, deptdata[0], 1, 2);
 			
 			int result = dao.insertProductList(conn, pList);
 			
@@ -94,11 +94,11 @@ public class ProductManager {
 			
 			System.out.println("음료 정보를 수정합니다.");
 			System.out.println("음료번호 음료이름 음료가격 재고 순으로 입력해주세요");
-			System.out.println("음료 정보를 수정합니다.");
 			String editData = sc.nextLine();
 			String[] eData = editData.split(" ");
 			
-			ProductList productList = new ProductList(0,eData[1],2,3);
+			ProductList productList = new ProductList(Integer.parseInt(eData[0]), eData[1],  
+					Integer.parseInt(eData[2]),Integer.parseInt(eData[3]));
 			
 			int result = dao.editProductList(conn, productList);
 			
