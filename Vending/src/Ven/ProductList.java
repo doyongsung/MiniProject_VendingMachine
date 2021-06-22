@@ -4,46 +4,41 @@ import java.util.Arrays;
 
 public class ProductList {
 	
-	private	int drinkName;
-	private	String[] drinkPrice;
-	private	int drinkStock;
+	private int itemCode;
+	private	String name;
+	private int price;
+	private	String[] itemQty;
 	
-	ProductList(int drinkName,String[] drinkPrice,int drinkStock) {
-		this.drinkName = drinkName;
-		this.drinkPrice = drinkPrice;
-		this.drinkStock = drinkStock;
-			}
-
-	public int getDrinkName() {
-		return drinkName;
+	public int getItemcode() {
+		return itemCode;
 	}
-
-	public void setDrinkName(int drinkName) {
-		this.drinkName = drinkName;
+	public void setItemcode(int itemcode) {
+		this.itemCode = itemcode;
 	}
-
-	public String[] getDrinkPrice() {
-		return drinkPrice;
+	public String getName() {
+		return name;
 	}
-
-	public void setDrinkPrice(String[] drinkPrice) {
-		this.drinkPrice = drinkPrice;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public int getDrinkStock() {
-		return drinkStock;
+	public int getPrice() {
+		return price;
 	}
-
-	public void setDrinkStock(int drinkStock) {
-		this.drinkStock = drinkStock;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-
+	public String[] getDrinkStock() {
+		return itemQty;
+	}
+	public void setDrinkStock(String[] drinkStock) {
+		this.itemQty = drinkStock;
+	}
 	@Override
 	public String toString() {
-		return "ProductList [drinkName=" + drinkName + ", drinkPrice=" + Arrays.toString(drinkPrice) + ", drinkStock="
-				+ drinkStock + "]";
+		return "ProductList [itemcode=" + itemCode + ", name=" + name + ", price=" + price + ", drinkStock="
+				+ Arrays.toString(itemQty) + "]";
 	}
-
+	
 
 
 }
