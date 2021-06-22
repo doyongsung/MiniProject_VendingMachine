@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import ProductList.ProductList;
 
 public class ProductListDao {
 	
@@ -23,7 +22,7 @@ public class ProductListDao {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, ProductList.getName());
 				pstmt.setInt(2, ProductList.getPrice());
-				pstmt.setInt(3, ProductList.getDrinkStock());
+				pstmt.setInt (3, ProductList.getDrinkStock());
 				
 				result = pstmt.executeUpdate();
 				
