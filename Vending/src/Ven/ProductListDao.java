@@ -23,7 +23,7 @@ public class ProductListDao {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, ProductList.getName());
 				pstmt.setInt(2, ProductList.getPrice());
-				pstmt.setInt(3, ProductList.getDrinkStock());
+				pstmt.set (3, ProductList.getDrinkStock());
 				
 				result = pstmt.executeUpdate();
 				
