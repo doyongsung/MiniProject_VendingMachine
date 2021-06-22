@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import dept.Dept;
+import dept.DeptDao;
+
 
 public class ProductListDao {
 
@@ -27,7 +30,7 @@ public class ProductListDao {
 	// 1. 전체 데이터 검색 기능
 	// 반환 타입 List<Dept>
 	// 매개변수 - Connection 객체 : Statement
-	ArrayList<ProductList> getProductList(Connection conn) {
+	ArrayList<ProductList> getDeptList(Connection conn) {
 
 		ArrayList<ProductList> list = null;
 
@@ -37,17 +40,17 @@ public class ProductListDao {
 
 		try {
 			stmt = conn.createStatement();
-			String sql = "select * from iteminfo order by itemcode";
+			String sql = "select * from dept order by deptno";
 
 			// 결과 받아오기
 			rs = stmt.executeQuery(sql);
 
 			list = new ArrayList<>();
 
-			// 데이터를 ITEMINFO 객체로 생성 -> list에 저장
+			// 데이터를 Dept 객체로 생성 -> list에 저장
 			while (rs.next()) {
 				
-				ProductList d = new ProductList(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
+				Dept d = new Dept(rs.getInt(1), rs.getString(2), rs.getString(3));
 				
 				list.add(d);
 			}
