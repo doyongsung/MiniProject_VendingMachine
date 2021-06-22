@@ -29,7 +29,7 @@ public class SalesAmount {
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
-			List<ProductList> list = dao.getProductList(conn);
+			List<ProductListDao> list = dao.getProductList(conn);
 
 			System.out.println("총 매출 리스트");
 			System.out.println("------------------------------------");
