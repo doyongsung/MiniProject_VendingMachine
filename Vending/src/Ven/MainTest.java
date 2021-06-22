@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class MainTest {
 public static void main(String[] args) {
 	ProductManager manager = new ProductManager(ProductListDao.getInstance());
+	BuyOption buy = new BuyOption();
 
 	Scanner sc = new Scanner(System.in);
 
@@ -15,6 +16,7 @@ public static void main(String[] args) {
 		int choice = Integer.parseInt(sc.nextLine());
 		switch (choice) {
 		case 1:
+			buy.VendingMachine();
 			
 			break;
 		case 2:
