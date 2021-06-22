@@ -32,19 +32,17 @@ public class ProductList {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getDrinkStock() {
+	public int getItemQty() {
 		return itemQty;
 	}
-	public void setDrinkStock(int drinkStock) {
-		this.itemQty = drinkStock;
+	public void setItemQty(int itemQty) {
+		this.itemQty = itemQty;
 	}
 	@Override
 	public String toString() {
 		return "ProductList [itemCode=" + itemCode + ", name=" + name + ", price=" + price + ", itemQty=" + itemQty
-				+ ", getItemcode()=" + getItemcode() + ", getName()=" + getName() + ", getPrice()=" + getPrice()
-				+ ", getDrinkStock()=" + getDrinkStock() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ "]";
 	}
-	
+
 
 }
