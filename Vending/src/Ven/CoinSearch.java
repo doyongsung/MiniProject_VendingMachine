@@ -1,47 +1,48 @@
 package Ven;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class CoinSearch {
 
-	public static void main(String[] args) {
-		
-		CoinSearch coinSearch = new CoinSearch(CoinDao.getInstance());
-		Scanner sc = new Scanner(System.in);
-				
+	private CoinDAO dao;
+	private Scanner sc1;
+
+	public CoinSearch(CoinDAO dao) {
+		this.dao = dao;
+		sc1 = new Scanner(System.in);
+	}
+
+	// 전체 리스트 출력 메소드
+	// DAO 에서 데이터 리스트를 받고 출력 처리
+	void CoinList() {
+		// Connection 객체 생성 -> 트렌젝션 처리
+		Connection conn = null;
+
+		// 2.연결
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+
 		try {
-			// 1. 드라이버 로드
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			
-			while(true) {
-				System.out.println("부서관리 프로그램");
-				System.out.println("-----------------------------------");
-				System.out.println("1. 부서 리스트");
-				System.out.println("2. 부서 정보 입력");
-				
-				System.out.println("-----------------------------------");
-				System.out.println("원하시는 기능의 번호를 입력해주세요.");
-				int num = Integer.parseInt(sc.nextLine());
-				
-				switch(num) {
-				case 1 :
-					SaleSelect
-					break;
-				case 2 :
-					manager.inputData();
-					break;
-				case 3 :
-					System.out.println("프로그램을 종료합니다.");
-					return;
-					
-				}
+			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+
+			List<CoinList> list = dao.getCoinLists(conn);
+
+			System.out.println("음료 번호 리스트");
+
+			for (CoinList cl : list) {
+				System.out.printf("%d \t %d \t %d \t %d \n", cl.getMoenyKey(), cl.getOback(), cl.getBack(),
+						cl.getMoenyAll());
 			}
-						
-			
-		} catch (ClassNotFoundException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
+
 	}
 
 }
