@@ -79,7 +79,7 @@ public class Order {
 					Integer.parseInt(orderData[3]));
 			
 			int result = dao.editProductList(conn, pList);
-			
+		 	
 			if(result > 0) {
 				System.out.println("주문 완료");
 			} else {
