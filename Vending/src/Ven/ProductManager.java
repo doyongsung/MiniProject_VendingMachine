@@ -115,7 +115,7 @@ public class ProductManager {
 		
 	}
 
-	   void saleshowinfo() {
+	   void saleShowinfo() {
 		   ProductManager manager = new ProductManager(ProductListDao.getInstance());
 			
 			
@@ -126,7 +126,7 @@ public class ProductManager {
 				
 	while(true) {
 		System.out.println("자판기 프로그램");
-		System.out.println("-------------------------------");
+		System.out.println("-----------------------------------");
 		System.out.println("1.음료 리스트");
 		System.out.println("2.음료 정보 등록");
 		System.out.println("3.음료 수정");
@@ -157,19 +157,32 @@ public class ProductManager {
 }
 	   }
 	   
-		void buyShowinfo(int choice) {
+		void Manager(int choice) {
+			int i = 1;
 
-			while(true) {
-				System.out.println("관리자 프로그램으로 접속합니다.");
-				System.out.println("관리자 id와 password를 입력해주세요.");
-				String id = sc.nextLine();
+			System.out.println("관리자 프로그램으로 접속합니다.");
+			while(i <= 3) {
+				System.out.println("-----------------------------------------------");
+				System.out.println("로그인");
+				System.out.print("id를 입력해주세요 >> ");
+				String id = sc.nextLine();		
+				System.out.print("password를 입력해주세요 >> ");
 			    String password = sc.nextLine();
 			    boolean isRightPass = (id.equals("hr") || password.equals("tiger"));
 			    if(id.equals(id) && isRightPass) {
-			    	System.out.println("성공입니다.");
+			    	System.out.println();
+			    	System.out.println("로그인 성공입니다.");
 			    	break;
 			    }else {
+			    	System.out.println("-----------------------------------------------");
 			    	System.out.println("id와 password가 틀렸습니다. 다시 입력해주세요");
+			    	System.out.println("-----------------------------------------------");
+			    	System.out.println();
+			    	i++;
+			    }
+			    if(i == 4) {
+			    	System.out.println("[3회 모두 틀렸습니다. 다시 접속해주세요.]");
+			    	System.exit(0);
 			    }
 			    
 			}
