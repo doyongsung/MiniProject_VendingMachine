@@ -98,6 +98,7 @@ public class ProductManager {
 			System.out.println("음료 정보를 수정합니다.");
 			System.out.println("음료번호 음료이름 음료가격 재고 순으로 입력해주세요");
 			String editData = sc.nextLine();
+			
 			String[] eData = editData.split(" ");
 			
 			ProductList productList = new ProductList(Integer.parseInt(eData[0]), eData[1],  
@@ -152,6 +153,11 @@ public class ProductManager {
 			}
 	   }
 	   
+	   void selectOne(int id) {
+		   String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		      String user = "hr";
+		      String pw = "tiger";
+	   }
 	   
 	   void saleShowinfo() {
 		   ProductManager manager = new ProductManager(ProductListDao.getInstance());
@@ -193,6 +199,7 @@ public class ProductManager {
 		order.order();
 		break;
 	case 6:
+		System.out.println("프로그램을 정상적으로 종료합니다.");
 		System.exit(0);
 	}
 	

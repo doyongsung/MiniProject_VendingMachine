@@ -20,8 +20,7 @@ public class ProductListDao {
      public static ProductListDao getInstance() {
     	 return dao;
      }
-     
-     
+    
      //전체 타입 검색기능
      //반환타입 List<productList>
      //매개변수 - Connection 객체 : Statement
@@ -84,7 +83,7 @@ public class ProductListDao {
  		
  		try {
  			String sql =
- 					"INSERT INTO PRODUCTINFO VALUES (PINFO_ICODE_SEQ.NEXTVAL, ?, ?, ?)";
+ 			"INSERT INTO PRODUCTINFO VALUES (PINFO_ICODE_SEQ.NEXTVAL, ?, ?, ?)";
  			pstmt = conn.prepareStatement(sql);
  			pstmt.setString(1, pList.getName());
  			pstmt.setInt(2, pList.getPrice());
