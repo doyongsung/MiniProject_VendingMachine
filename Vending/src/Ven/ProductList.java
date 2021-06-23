@@ -7,6 +7,7 @@ public class ProductList {
 	private	String name;
 	private int price;
 	private	int itemQty;
+
 	
 	public ProductList(int itemCode, String name, int price, int itemQty) {
 		this.itemCode = itemCode;
