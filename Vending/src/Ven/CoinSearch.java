@@ -32,12 +32,14 @@ public class CoinSearch {
 
 			List<CoinList> list = dao.getCoinLists(conn);
 
-			System.out.println("음료 번호 리스트");
-
+			System.out.println("========== 동전 리스트 ==========");
+			System.out.println("번호 \t 오백원 \t 백원 \t 총액");
 			for (CoinList cl : list) {
 				System.out.printf("%d \t %d \t %d \t %d \n", cl.getMoenyKey(), cl.getOback(), cl.getBack(),
 						cl.getMoenyAll());
 			}
+			
+			System.out.println("==============================");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

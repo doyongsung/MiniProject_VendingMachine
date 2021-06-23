@@ -35,7 +35,7 @@ public class CoinDAO {
 
 		try {
 			stmt = conn.createStatement();
-			String sql = "SELECT moneykey,oback,back,oback*500 + back*100 as allmoney FROM money;";
+			String sql = "SELECT moneykey,oback,back,oback*500 + back*100 as allmoney FROM money";
 
 			// 결과 받아오기
 			rs = stmt.executeQuery(sql);
