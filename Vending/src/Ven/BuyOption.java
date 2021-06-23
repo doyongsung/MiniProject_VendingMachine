@@ -3,6 +3,9 @@ package Ven;
 import java.util.Scanner;
 
 public class BuyOption {
+	private Scanner name;
+	private Scanner price;
+
 	void VendingMachine() {
 		BuyManager manager = new BuyManager(ProductListDao.getInstance());
 
@@ -16,18 +19,20 @@ public class BuyOption {
 				manager.buyitemList();
 				System.out.println("-----------------------------------");
 				System.out.println("원하시는 음료 번호를 입력해주세요.");
+				sc.nextInt();
 				System.out.println("-----------------------------------");
+				System.out.println(sc + "번" + name + price + "원 입니다.");
 				int num = Integer.parseInt(sc.nextLine());
 
 				switch (num) {
 				case 1:
-				//	manager.itemList();
+					// manager.itemList();
 					break;
 				case 2:
-					//manager.inputData();
+					// manager.inputData();
 					break;
 				case 3:
-					//manager.editItem();
+					// manager.editItem();
 					break;
 				case 4:
 					break;
@@ -38,5 +43,6 @@ public class BuyOption {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 }

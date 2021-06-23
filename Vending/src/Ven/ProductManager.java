@@ -147,6 +147,7 @@ public class ProductManager {
 		manager.editItem();
 		break;
 	case 4:
+		manager.delproduct();
 		break;
 	}
 	}
@@ -188,6 +189,37 @@ public class ProductManager {
 			}
 
 		}
+		
+		// 삭제
+		   void delproduct() {
+		      // Connection 객체 생성 -> 트렌젝션 처리
+		      Connection conn = null;
+
+		      // 2. 연결
+		      String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		      String user = "hr";
+		      String pw = "tiger";
+
+		      try {
+		         conn = DriverManager.getConnection(jdbcUrl, user, pw);
+
+		         itemList();
+		         System.out.println("삭제를 원하시는 음료 번호를 입력해주세요.");
+		         int productList = Integer.parseInt(sc.nextLine());
+
+		         int result = dao.deleteProduct(conn, productList);
+
+		         if (result > 0) {
+		            System.out.println("삭제되었습니다.");
+		         } else {
+		            System.out.println("해당 부서의 정보가 없습니다.");
+		         }
+
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      }
+		   }
 		
 		
 			
