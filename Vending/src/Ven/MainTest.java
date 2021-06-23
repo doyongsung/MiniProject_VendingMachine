@@ -2,14 +2,13 @@ package Ven;
 
 import java.util.Scanner;
 
-
 public class MainTest {
-public static void main(String[] args) {
-	ProductManager manager = new ProductManager(ProductListDao.getInstance());
-	SaleSelect saleselect = new SaleSelect();
-	BuyOption buy = new BuyOption();
+	public static void main(String[] args) {
+		ProductManager manager = new ProductManager(ProductListDao.getInstance());
+		SaleSelect saleselect = new SaleSelect();
+		BuyOption buy = new BuyOption();
 
-	Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 
 		System.out.println("----------------------------------------------------");
 		System.out.println("1. 음료 구매   2. 관리자    3. 프로그램 종료");
@@ -22,17 +21,11 @@ public static void main(String[] args) {
 		case 2:
 			manager.Manager(choice);
 			saleselect.SaleSelect();
-			
-			
+
 		case 3:
 			System.out.println("프로그램을 종료합니다.");
 			break;
 		}
-		
-		
-	
-		
-		
-		   
+
 	}
 }

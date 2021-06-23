@@ -2,11 +2,6 @@ package Ven;
 
 public class CoinList {
 
-	private int moenyKey;
-	private int oback;
-	private int back;
-	private int moenyAll;
-
 	public int getMoenyKey() {
 		return moenyKey;
 	}
@@ -15,20 +10,20 @@ public class CoinList {
 		this.moenyKey = moenyKey;
 	}
 
-	public int getOback() {
-		return oback;
+	public String getMoneyName() {
+		return moneyName;
 	}
 
-	public void setOback(int oback) {
-		this.oback = oback;
+	public void setMoneyName(String moneyName) {
+		this.moneyName = moneyName;
 	}
 
-	public int getBack() {
-		return back;
+	public int getMoneyCount() {
+		return moneyCount;
 	}
 
-	public void setBack(int back) {
-		this.back = back;
+	public void setMoneyCount(int moneyCount) {
+		this.moneyCount = moneyCount;
 	}
 
 	public int getMoenyAll() {
@@ -39,18 +34,43 @@ public class CoinList {
 		this.moenyAll = moenyAll;
 	}
 
-	@Override
-	public String toString() {
-		return "CoinList [moenyKey=" + moenyKey + ", oback=" + oback + ", back=" + back + ", moenyAll=" + moenyAll
-				+ "]";
-	}
-
-	public CoinList(int moenyKey, int oback, int back, int moenyAll) {
+	public CoinList(int moenyKey, String moneyName, int moneyCount, int moenyAll) {
 		super();
 		this.moenyKey = moenyKey;
-		this.oback = oback;
-		this.back = back;
+		this.moneyName = moneyName;
+		this.moneyCount = moneyCount;
 		this.moenyAll = moenyAll;
 	}
+
+	@Override
+	public String toString() {
+		return "CoinList [moneyMax=" + moneyMax + "]";
+	}
+
+	public CoinList(int moneyMax) {
+		super();
+		this.moneyMax = moneyMax;
+	}
+
+	public int getMoneyMax() {
+		return moneyMax;
+	}
+
+	public void setMoneyMax(int moneyMax) {
+		this.moneyMax = moneyMax;
+	}
+
+	private int moneyMax;
+	private int moenyKey;
+	private String moneyName;
+	private int moneyCount;
+
+	public CoinList(int moenyKey, int moneyCount) {
+		super();
+		this.moenyKey = moenyKey;
+		this.moneyCount = moneyCount;
+	}
+
+	private int moenyAll;
 
 }
