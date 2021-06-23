@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Order {
 	private ProductListDao dao;
 	private Scanner sc;
-	ProductManager mg = new ProductManager(ProductListDao.getInstance());
 	
 	public Order(ProductListDao dao) {
 		this.dao = dao;
@@ -65,27 +64,40 @@ public class Order {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			
 			//주문
-			System.out.println("====================================");
-			System.out.println("발주 > \t 음료이름 수량 입력");
-			System.out.println("====================================");
-			String orderData = sc.nextLine();
-			String[] oData = orderData.split(" ");
-			System.out.println("====================================");
+			for(;;) {
+				System.out.println("====================================");
+				System.out.print("발주 > \t 음료코드 입력 : ");
+				int orderCode = sc.nextInt();
+				System.out.println();
+				System.out.print("발주 > \t 주문수량 입력 : ");
+				int orderQty = sc.nextInt();
+				System.out.println();
+
+				
+				ProductList ProductList = new ProductList(orderCode, orderQty);
+				int result = dao.editProductList(conn, ProductList);
+			 	
+				if(result > 0) {
+					System.out.println("주문 완료");
+					System.out.println();
+					System.out.println();
+					
+					// 3. 주문 내용이 저장된 재고 목록 출력
+					stockageList();
+
+					// 4. 주문 추가 / 주문 종료 선택
+					System.out.println("1. 추가 발주 \n2. 종료");
+					int num = sc.nextInt();
+					if(num==2) {
+						System.out.println("주문을 종료합니다.");
+						break;
+					}
+						
+				} else {
+					System.out.println("주문 실패");
+				}
 			
-			ProductList pList = new ProductList(
-					Integer.parseInt(orderData[0]),
-					orderData[1],
-					Integer.parseInt(orderData[2]),
-					Integer.parseInt(orderData[3]));
-			
-			int result = dao.editProductList(conn, pList);
-		 	
-			if(result > 0) {
-				System.out.println("주문 완료");
-			} else {
-				System.out.println("주문 실패");
 			}
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -93,15 +105,7 @@ public class Order {
 		}
 		
 	}
-	 
-	
-	
-	// 3. 주문 내용이 저장된 재고 목록 출력
-	// 4. 주문 추가 / 주문 종료 선택
-	
-	
-	
-	
+
 	
 
 }
