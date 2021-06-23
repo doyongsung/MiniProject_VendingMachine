@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MainSelect {
 	public static void main(String[] args) {
 
-//	CoinSearch coinSearch = new CoinSearch(CoinDao.getInstance());
+	CoinSearch coinSearch = new CoinSearch(CoinDAO.getInstance());
 
 		SaleSelect saleSelect = new SaleSelect();
 		Scanner sc = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class MainSelect {
 
 				switch (num) {
 				case 1:
-					saleSelect.SaleSelect();
+					coinSearch.CoinList();
 					break;
 				case 2:
 

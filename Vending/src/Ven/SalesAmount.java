@@ -32,7 +32,7 @@ public class SalesAmount {
 
 			System.out.println("총 매출 리스트");
 			System.out.println("------------------------------------");
-			System.out.println("ItemCode \t 상품이름 \t 상품가격 \t ItemQTY");
+			System.out.println("음료번호 \t 음료이름 \t 음료가격 \t 구매내역 ");
 			System.out.println("------------------------------------");
 
 			for (ProductList pList : list) {

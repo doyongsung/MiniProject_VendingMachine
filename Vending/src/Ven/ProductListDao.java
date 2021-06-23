@@ -35,7 +35,7 @@ public class ProductListDao {
     	 
     	 try {
 			stmt = conn.createStatement();
-			String sql = "select * from ProductList";
+			String sql = "select * from PRODUCTINFO order by itemcode";
 			
 			//결과 받아오기
 			rs = stmt.executeQuery(sql);
@@ -116,7 +116,7 @@ public class ProductListDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "update ProductList set name=?, price=?, itemQty=?, where itemcode=?";
+			String sql = "update PRODUCTINFO set name=?, price= ?, itemQty=? where itemcode=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ProductList.getName());
 			pstmt.setInt(2, ProductList.getPrice());
