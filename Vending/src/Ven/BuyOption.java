@@ -13,7 +13,7 @@ public class BuyOption {
 
 			while (true) {
 				System.out.println("---------- 아주시원한 자판기 ----------");
-				manager.buyitemList();
+			
 				System.out.println("--------------------------------");
 				System.out.println("원하시는 음료 번호를 입력해주세요.");
 				System.out.println("-----------------------------------");

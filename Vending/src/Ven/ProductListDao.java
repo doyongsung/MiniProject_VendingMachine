@@ -141,6 +141,38 @@ public class ProductListDao {
 		}
 		return result;
 	}
+	// 삭제 Manager
+	   int deleteProduct(Connection conn, int itemcode) {
 
+	      int result = 0;
+
+	      // 데이터 베이스 처리 sql
+	      PreparedStatement pstmt = null;
+	      String sql = "delete from PRODUCTINFO where ITEMCODE=?";
+
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, itemcode);
+
+	         result = pstmt.executeUpdate();
+
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+
+	         if (pstmt != null) {
+	            try {
+	               pstmt.close();
+	            } catch (SQLException e) {
+	               // TODO Auto-generated catch block
+	               e.printStackTrace();
+	            }
+	         }
+	      }
+
+	      return result;
+
+	   }
      
 }
