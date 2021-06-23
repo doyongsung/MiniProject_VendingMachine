@@ -116,13 +116,10 @@ public class ProductListDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "update PRODUCTINFO set name=?, price= ?, itemQty=? where itemcode=?";
+			String sql = "update PRODUCTINFO set itemQty=itemQty+? where itemcode=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ProductList.getName());
-			pstmt.setInt(2, ProductList.getPrice());
-			pstmt.setInt(3, ProductList.getItemQty());
-			pstmt.setInt (4, ProductList.getItemcode());
-			
+			pstmt.setInt(1, ProductList.getItemQty());
+			pstmt.setInt (2, ProductList.getItemcode());
 			
 			result = pstmt.executeUpdate();
 				
@@ -141,6 +138,7 @@ public class ProductListDao {
 		}
 		return result;
 	}
+
 	// 삭제 Manager
 	   int deleteProduct(Connection conn, int itemcode) {
 

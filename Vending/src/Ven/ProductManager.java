@@ -155,6 +155,7 @@ public class ProductManager {
 	   
 	   void saleShowinfo() {
 		   ProductManager manager = new ProductManager(ProductListDao.getInstance());
+		   Order order = new Order(ProductListDao.getInstance());
 			
 			
 			Scanner sc = new Scanner(System.in);
@@ -162,13 +163,14 @@ public class ProductManager {
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				
-		System.out.println("자판기 프로그램");
-		System.out.println("————————————————————————————————————————————————");
+		System.out.println();
+		System.out.println("———————————————————관리자 모드—————————————————————");
 		System.out.println("1.음료 리스트");
-		System.out.println("2.음료 정보 등록");
+		System.out.println("2.음료 추가 ");
 		System.out.println("3.음료 수정");
-		System.out.println("4.음료 정보 삭제");
-		System.out.println("5.프로그램 종료");
+		System.out.println("4.음료 삭제");
+		System.out.println("5 음료 재고");
+		System.out.println("6.프로그램 종료");
 		System.out.println("————————————————————————————————————————————————");
 		System.out.println("원하시는 기능의 번호를 입력해주세요.");
 		int num = sc.nextInt();
@@ -187,6 +189,10 @@ public class ProductManager {
 		manager.delproduct();
 		break;	
 	case 5:
+		order.stockageList();
+		order.order();
+		break;
+	case 6:
 		System.exit(0);
 	}
 	
@@ -205,8 +211,7 @@ public class ProductManager {
 
 			System.out.println("관리자 프로그램으로 접속합니다.");
 			while(i <= 3) {
-				System.out.println("————————————————————————————————————————————————");
-				System.out.println("로그인");
+				System.out.println("——————————————————— 로그인 ———————————————————————");
 				System.out.print("id를 입력해주세요 >> ");
 				String id = sc.nextLine();		
 				System.out.print("password를 입력해주세요 >> ");
@@ -214,7 +219,7 @@ public class ProductManager {
 			    boolean isRightPass = (id.equals("hr") || password.equals("tiger"));
 			    if(id.equals(id) && isRightPass) {
 			    	System.out.println();
-			    	System.out.println("로그인 성공입니다.");
+			    	System.out.println("로그인 성공!!");
 			    	break;
 			    }else {
 			    	System.out.println("————————————————————————————————————————————————");
