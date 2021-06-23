@@ -25,9 +25,9 @@ public class TotalSalseDao {
      //전체 타입 검색기능
      //반환타입 List<productList>
      //매개변수 - Connection 객체 : Statement
-     ArrayList<ProductList> getProductList(Connection conn){
+     ArrayList<TotalList> gettTotalList(Connection conn){
         
-        ArrayList<ProductList> list = null;
+        ArrayList<TotalList> list = null;
        
         // 데이터 베이스의 ProductList 테이블 이용 select 결과물 -> list 에 저장
         Statement stmt = null;
@@ -35,7 +35,8 @@ public class TotalSalseDao {
         
         try {
          stmt = conn.createStatement();
-         String sql = "select * from PRODUCTINFO p, BUYINFO b where p.itemcode=b.itemcode;";
+         String sql = "select p.itemcode,p.name, b.buyqty, b.totalprice from PRODUCTINFO p, BUYINFO b "
+         		+ "where p.itemcode=b.itemcode order by b.totalprice desc";
          
          //결과 받아오기
          rs = stmt.executeQuery(sql);
@@ -45,7 +46,7 @@ public class TotalSalseDao {
          //데이터를 ProductList 객체로 생성 -> list에 저장
          
          while(rs.next()) {
-            ProductList PL = new ProductList(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
+        	 TotalList PL = new TotalList(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
             
             list.add(PL);
          }
@@ -76,4 +77,38 @@ public class TotalSalseDao {
       
 
       }
+     
+     //2. 입력받은 상품만 출력
+     int insertProductList(Connection conn, TotalList tList) {
+        
+        int result = 0;
+        PreparedStatement pstmt = null;
+        
+        try {
+           String sql =
+                 "select p.itemcode,p.name, b.buyqty, b.totalprice from PRODUCTINFO p, BUYINFO b where p.itemcode=b.itemcode and p.itemcode";
+           pstmt = conn.prepareStatement(sql);
+           pstmt.setInt(1, tList.getItemcode());
+           pstmt.setString(2, tList.getName());
+           pstmt.setInt(3, tList.getBuyQty());
+           pstmt.setInt(3, tList.getTotalPrice());
+           
+           
+        result = pstmt.executeUpdate();
+           
+        } catch (SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+        } finally {
+           if(pstmt != null) {
+              try {
+                 pstmt.close();
+              } catch (SQLException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+              }
+           }
+        }
+        return result;
+     }
 }

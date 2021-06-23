@@ -40,7 +40,8 @@ public class Order {
                   pList.getName(),
                   pList.getItemQty());
          }
-         System.out.println("————————————————————————————————————————————————");         
+         System.out.println("————————————————————————————————————————————————");     
+       
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();

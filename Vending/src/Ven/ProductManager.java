@@ -12,6 +12,7 @@ public class ProductManager {
    private ProductListDao dao;
    private Scanner sc;
    
+   
    public ProductManager(ProductListDao dao) {
       this.dao = dao;
       sc = new Scanner(System.in);
@@ -156,7 +157,7 @@ public class ProductManager {
       void saleShowinfo() {
          ProductManager manager = new ProductManager(ProductListDao.getInstance());
          Order order = new Order(ProductListDao.getInstance());
-         SalesAmount totalSale = new SalesAmount(ProductListDao.getInstance());
+         SalesAmount totalSale = new SalesAmount(TotalSalseDao.getInstance());
          
          
          Scanner sc = new Scanner(System.in);
