@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -59,16 +60,16 @@ public class ProductManager {
 			
 			System.out.println("음료 정보를 입력합니다.");
 			System.out.println("음료이름 음료가격 재고 음료번호 순으로 입력해주세요");
-			System.out.println("ex) 음료수 2000 20 1");
+			System.out.println("ex) 음료수 2000 20 ");
 			String inputData = sc.nextLine();
 			String[] deptdata = inputData.split(" ");
 			
-			ProductList pList = new ProductList(0, deptdata[0], 1, 2);
+			ProductList pList = new ProductList(0, deptdata[0], Integer.parseInt(deptdata[1]), Integer.parseInt(deptdata[2]));
 			
 			int result = dao.insertProductList(conn, pList);
 			
 			if(result > 0) {
-				System.out.println("입력되었습니다.");
+				System.out.println("입력되었습니다.");				
 			} else {
 				System.out.println("입력 실패");
 			}
@@ -77,10 +78,12 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
-		
-	}
 	
+	}
+	//음료 정보 수정
 	void editItem() {
         Connection conn = null;
 		
@@ -111,6 +114,8 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch (NumberFormatException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 		
 	}
@@ -142,18 +147,21 @@ public class ProductManager {
 	      } catch (SQLException e) {
 	         // TODO Auto-generated catch block
 	         e.printStackTrace();
-	      }
+	      }catch (NumberFormatException e) {
+				System.out.println("잘못된정보입니다. 다시입력해주세요");
+			}
 	   }
+	   
+	   
 	   void saleShowinfo() {
 		   ProductManager manager = new ProductManager(ProductListDao.getInstance());
 			
 			
 			Scanner sc = new Scanner(System.in);
-			
+			while(true) {		
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				
-	while(true) {
 		System.out.println("자판기 프로그램");
 		System.out.println("————————————————————————————————————————————————");
 		System.out.println("1.음료 리스트");
@@ -163,7 +171,7 @@ public class ProductManager {
 		System.out.println("5.프로그램 종료");
 		System.out.println("————————————————————————————————————————————————");
 		System.out.println("원하시는 기능의 번호를 입력해주세요.");
-		int num = Integer.parseInt(sc.nextLine());
+		int num = sc.nextInt();
 	
 	switch(num) {
 	case 1:
@@ -181,13 +189,17 @@ public class ProductManager {
 	case 5:
 		System.exit(0);
 	}
-	}
+	
+			 } catch (InputMismatchException e) {
+				 System.out.println("잘못된입력입니다. 다시입력해주세요");
+            	 sc = new Scanner(System.in);
+             
              } catch (ClassNotFoundException e) {
 	           // TODO Auto-generated catch block
 	             e.printStackTrace();
-}
+             }
 	   }
-	   
+	   }
 		void Manager(int choice) {
 			int i = 1;
 
