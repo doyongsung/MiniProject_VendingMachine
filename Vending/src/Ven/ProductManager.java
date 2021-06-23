@@ -33,9 +33,9 @@ public class ProductManager {
 			List<ProductList> list = dao.getProductList(conn);
 			
 			System.out.println("음료 번호 리스트");
-			System.out.println("---------------------------------");
+			System.out.println("————————————————————————————————————————————————");
 			System.out.println("음료번호 \t 음료이름 \t 음료가격 \t 재고");
-			System.out.println("---------------------------------");
+			System.out.println("————————————————————————————————————————————————");
 			
 			for(ProductList pl : list) {
 				System.out.printf("%d \t %s \t %d \t %d \n", pl.getItemcode(),pl.getName(),pl.getPrice(),pl.getItemQty());
@@ -126,13 +126,13 @@ public class ProductManager {
 				
 	while(true) {
 		System.out.println("자판기 프로그램");
-		System.out.println("-----------------------------------");
+		System.out.println("————————————————————————————————————————————————");
 		System.out.println("1.음료 리스트");
 		System.out.println("2.음료 정보 등록");
 		System.out.println("3.음료 수정");
 		System.out.println("4.음료 정보 삭제");
 		System.out.println("5.프로그램 종료");
-		System.out.println("-----------------------------------");
+		System.out.println("————————————————————————————————————————————————");
 		System.out.println("원하시는 기능의 번호를 입력해주세요.");
 		int num = Integer.parseInt(sc.nextLine());
 	
@@ -147,10 +147,11 @@ public class ProductManager {
 		manager.editItem();
 		break;
 	case 4:
-		break;
+		break;	
+	case 5:
+		System.exit(0);
 	}
 	}
-	
              } catch (ClassNotFoundException e) {
 	           // TODO Auto-generated catch block
 	             e.printStackTrace();
@@ -162,7 +163,7 @@ public class ProductManager {
 
 			System.out.println("관리자 프로그램으로 접속합니다.");
 			while(i <= 3) {
-				System.out.println("-----------------------------------------------");
+				System.out.println("————————————————————————————————————————————————");
 				System.out.println("로그인");
 				System.out.print("id를 입력해주세요 >> ");
 				String id = sc.nextLine();		
@@ -174,9 +175,9 @@ public class ProductManager {
 			    	System.out.println("로그인 성공입니다.");
 			    	break;
 			    }else {
-			    	System.out.println("-----------------------------------------------");
+			    	System.out.println("————————————————————————————————————————————————");
 			    	System.out.println("id와 password가 틀렸습니다. 다시 입력해주세요");
-			    	System.out.println("-----------------------------------------------");
+			    	System.out.println("————————————————————————————————————————————————");
 			    	System.out.println();
 			    	i++;
 			    }
