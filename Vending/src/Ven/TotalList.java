@@ -17,12 +17,8 @@ public class TotalList {
 		this.totalPrice = totalPrice;
 	}
 
-	public TotalList(int itemCode, int itemQty) {
-		this.itemCode = itemCode;
-		this.itemQty = itemQty;
-	}
-
-	public TotalList(int itemCode) {
+	public TotalList(String name) {
+		this.name = name;
 	
 	}
 

@@ -31,16 +31,17 @@ public class SalesAmount {
 			List<TotalList> list = dao.gettTotalList(conn);
 
 			System.out.println("총 매출 리스트");
-			System.out.println("------------------------------------");
+			System.out.println("————————————————————————————————————————————————");
 			System.out.println("음료번호 \t 음료이름 \t 	판매수량 \t 총판매금액 ");
-			System.out.println("------------------------------------");
+			System.out.println("————————————————————————————————————————————————");
 
 			for (TotalList pList : list) {
 				System.out.printf("%5d \t %s \t \t %5d \t %5d \t \n", pList.getItemcode(), pList.getName(),
 						pList.getBuyQty(), pList.getTotalPrice());
 
 			}
-			System.out.println("------------------------------------");
+			System.out.println("————————————————————————————————————————————————");
+			drinkSelect();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -55,7 +56,47 @@ public class SalesAmount {
 	      String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	      String user = "hr";
 	      String pw = "tiger";
+	      try {
+	          conn = DriverManager.getConnection(jdbcUrl, user, pw);
+	          
+	          //상품별 매출 출력
+	          for(;;) {
+	             System.out.println("————————————————————————————————————————————————");
+	             System.out.print("상품별 매출 확인 \n");
+	             System.out.print("음료이름 입력 : ");
+	             System.out.println();
+	            String name = sc.nextLine();
+
+	             int result = dao.insertProductList(conn, name);
+
+	              
+	             if(result > 0) {
+
+	    			}
+
+	                
+
+	                // 4. 주문 추가 / 주문 종료 선택
+	                System.out.println("1. 다른 상품 매출 확인 \n2. 종료");
+	                int num = sc.nextInt();
+	                if(num==2) {
+	                   System.out.println("매출확인을 종료합니다");
+	                   break;
+	                }
+	                   
+	             } else {
+	                System.out.println("매출 확인 실패");
+	             }
+	          
+	          }
+	          
+	       } catch (SQLException e) {
+	          // TODO Auto-generated catch block
+	          e.printStackTrace();
+	       }
+	       
+	    }
 		
 		
 	}
-}
+

@@ -79,19 +79,16 @@ public class TotalSalseDao {
       }
      
      //2. 입력받은 상품만 출력
-     int insertProductList(Connection conn, TotalList tList) {
+     int insertProductList(Connection conn, String name) {
         
         int result = 0;
         PreparedStatement pstmt = null;
         
         try {
            String sql =
-                 "select p.itemcode,p.name, b.buyqty, b.totalprice from PRODUCTINFO p, BUYINFO b where p.itemcode=b.itemcode and p.itemcode";
+                 "select p.itemcode,p.name, b.buyqty, b.totalprice from PRODUCTINFO p, BUYINFO b where p.itemcode=b.itemcode and p.name = ?";
            pstmt = conn.prepareStatement(sql);
-           pstmt.setInt(1, tList.getItemcode());
-           pstmt.setString(2, tList.getName());
-           pstmt.setInt(3, tList.getBuyQty());
-           pstmt.setInt(3, tList.getTotalPrice());
+           pstmt.setString(1, name);
            
            
         result = pstmt.executeUpdate();
