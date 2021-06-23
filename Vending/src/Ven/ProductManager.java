@@ -156,6 +156,7 @@ public class ProductManager {
       void saleShowinfo() {
          ProductManager manager = new ProductManager(ProductListDao.getInstance());
          Order order = new Order(ProductListDao.getInstance());
+         SalesAmount totalSale = new SalesAmount(ProductListDao.getInstance());
          
          
          Scanner sc = new Scanner(System.in);
@@ -169,8 +170,9 @@ public class ProductManager {
       System.out.println("2.음료 추가 ");
       System.out.println("3.음료 수정");
       System.out.println("4.음료 삭제");
-      System.out.println("5 음료 재고");
-      System.out.println("6.프로그램 종료");
+      System.out.println("5 음료 발주");
+      System.out.println("6 매출조회");
+      System.out.println("7.프로그램 종료");
       System.out.println("————————————————————————————————————————————————");
       System.out.println("원하시는 기능의 번호를 입력해주세요.");
       int num = sc.nextInt();
@@ -193,6 +195,9 @@ public class ProductManager {
       order.order();
       break;
    case 6:
+	   totalSale.totalList();
+	   
+   case 7:
       System.exit(0);
    }
    

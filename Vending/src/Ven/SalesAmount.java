@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SalesAmount {
-	private ProductListDao dao;
-	private Scanner sc;
-
-	public SalesAmount(ProductListDao dao) {
-		this.dao = dao;
-		sc = new Scanner(System.in);
-	}
+	   private ProductListDao dao;
+	   private Scanner sc;
+	   
+	   public SalesAmount(ProductListDao dao) {
+	      this.dao = dao;
+	      sc = new Scanner(System.in);
+	   }
 
 	// 총매출액 출력 메소드
 	// DAO 에서 데이터 리스트를 받고 출력 처리
@@ -41,6 +41,7 @@ public class SalesAmount {
 
 			}
 			System.out.println("------------------------------------");
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
