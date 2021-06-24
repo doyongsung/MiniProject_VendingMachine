@@ -285,7 +285,7 @@ public class ProductManager {
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
-			System.out.println("주문 하실 음료의 수량 입력해 >>");
+			System.out.println("주문 하실 음료의 수량 입력해주세요>>");
 			int num2 = sc.nextInt();
 
 			ProductList numlist = new ProductList(num);
