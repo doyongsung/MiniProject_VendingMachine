@@ -34,7 +34,7 @@ public class CoinSearch {
 
 			int editData = scanner.nextInt();
 
-			CoinList coinlist = new CoinList(num);
+			CoinList coinlist = new CoinList(num,editData);
 
 			int result = dao.editDept(conn, coinlist); // 수정
 

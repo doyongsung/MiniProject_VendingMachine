@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 public class CoinDAO {
 	private CoinDAO() {
 		// TODO Auto-generated constructor stub
@@ -28,7 +27,6 @@ public class CoinDAO {
 	ArrayList<CoinList> getCoinLists(Connection conn) {
 
 		ArrayList<CoinList> list = null;
-		
 
 		// 데이터 베이스의 ProductList 테이블 이용 select 결과물 -> list 에 저장
 		Statement stmt = null;
