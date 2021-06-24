@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 //package Ven;
 //
 //import java.sql.ResultSet;
@@ -80,4 +84,40 @@
 //		}
 //
 //	}
+<<<<<<< Updated upstream
 //}
+=======
+//}
+
+package Ven;
+
+import java.util.Scanner;
+
+public class BuyOption {
+
+
+	void VendingMachine() {
+		BuyManager manager = new BuyManager(ProductListDao.getInstance());
+		ProductManager pm = new ProductManager(ProductListDao.getInstance());
+		Order order = new Order(ProductListDao.getInstance());
+		Scanner sc = new Scanner(System.in);
+		
+		
+		try {
+		
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			System.out.println("---------- 아주시원한 자판기 -----------");
+			manager.buyitemList();
+			order.subtract();
+			
+		
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+}
+
+>>>>>>> Stashed changes
