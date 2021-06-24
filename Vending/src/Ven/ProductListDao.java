@@ -75,6 +75,39 @@ public class ProductListDao {
 
 	}
 
+	
+	int updateProductList(Connection conn, ProductList ProductList) {
+        
+        int result = 0;
+        PreparedStatement pstmt = null;
+
+        try {
+           String sql = "update PRODUCTINFO set name=?, price= ?, itemQty=? where itemcode=?";
+           pstmt = conn.prepareStatement(sql);
+           pstmt.setString(1, ProductList.getName());
+           pstmt.setInt(2, ProductList.getPrice());
+           pstmt.setInt(3, ProductList.getItemQty());
+           pstmt.setInt (4, ProductList.getItemcode());
+           
+           
+           result = pstmt.executeUpdate();
+              
+        } catch (SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+        } finally {
+           if(pstmt != null) {
+              try {
+                 pstmt.close();
+              } catch (SQLException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+              }
+           }
+        }
+        return result;
+     }
+	
 	// 2. 저장
 	int insertProductList(Connection conn, ProductList pList) {
 
