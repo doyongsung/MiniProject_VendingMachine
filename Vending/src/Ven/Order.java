@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Order {
 	private ProductListDao dao;
 	private Scanner sc;
+	SaleSelect sal = new SaleSelect();
 
 	public Order(ProductListDao dao) {
 		this.dao = dao;
@@ -78,10 +79,14 @@ public class Order {
 					stockageList();
 
 					// 4. 주문 추가 / 주문 종료 선택
-					System.out.println("1. 추가 발주 \n2. 종료");
+					System.out.println("1. 추가 발주 \n2. 관리자 메뉴 \n3. 프로그램 종료");
 					int num = sc.nextInt();
-					if (num == 2) {
-						System.out.println("주문을 종료합니다.");
+					switch (num) {
+					case 2 : //관리자 메뉴
+						sal.SaleSelect();
+						break;
+					case 3 : //프로그램 종료
+						
 						break;
 					}
 
