@@ -120,6 +120,42 @@ public class ProductManager {
 		}
 		
 	}
+	
+	void update() {
+		 Connection conn = null;
+			
+			// 2.연결
+			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "hr";
+			String pw = "tiger";
+			
+			try {
+				conn = DriverManager.getConnection(jdbcUrl,user,pw);
+				
+				System.out.println("음료 정보를 수정합니다.");
+				System.out.println("음료번호 음료이름 음료가격 재고 순으로 입력해주세요");
+				String editData = sc.nextLine();
+				
+				String[] eData = editData.split(" ");
+				
+				ProductList productList = new ProductList(Integer.parseInt(eData[0]), eData[1],  
+						Integer.parseInt(eData[2]),Integer.parseInt(eData[3]));
+				
+				int result = dao.updateProductList(conn, productList);
+				
+				if(result > 0) {
+					System.out.println("수정되었습니다.");
+				}else {
+					System.out.println("수정실패!!!");
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (NumberFormatException e) {
+				System.out.println("잘못된정보입니다. 다시입력해주세요");
+			}
+	}
 	// 삭제
 	   void delproduct() {
 	      // Connection 객체 생성 -> 트렌젝션 처리
@@ -158,6 +194,9 @@ public class ProductManager {
 		      String user = "hr";
 		      String pw = "tiger";
 	   }
+void Update() {
+	
+}
 	   
 	   void saleShowinfo() {
 		   ProductManager manager = new ProductManager(ProductListDao.getInstance());
@@ -189,7 +228,7 @@ public class ProductManager {
 		manager.inputData();
 		break;			
 	case 3:
-		manager.editItem();
+		manager.update();
 		break;
 	case 4:
 		manager.delproduct();
@@ -228,7 +267,8 @@ public class ProductManager {
 			    	System.out.println();
 			    	System.out.println("로그인 성공!!");
 			    	break;
-			    }else {
+			    }
+			    else {
 			    	System.out.println("————————————————————————————————————————————————");
 			    	System.out.println("id와 password가 틀렸습니다. 다시 입력해주세요");
 			    	System.out.println("————————————————————————————————————————————————");
@@ -243,5 +283,5 @@ public class ProductManager {
 			}
 
 		}
-			
+	
 }

@@ -7,7 +7,7 @@ CREATE TABLE PRODUCTINFO (
     ITEMQTY INTEGER
 
 );
-
+insert into PRODUCTINFO (ITEMCODE,ITEMQTY)values (PINFO_ICODE_SEQ.NEXTVAL ,2);
 
 CREATE TABLE BUYINFO (
     
@@ -19,7 +19,7 @@ CREATE TABLE BUYINFO (
 );
 
 
-
+select* from PRODUCTINFO;
 
 CREATE SEQUENCE BINFO_BCODE_SEQ
 START WITH 1
@@ -48,6 +48,6 @@ drop table PRODUCTINFO;
 
 
 
+select name,ITEMQTY,PRICE from PRODUCTINFO where itemcode = 1 and  ItemQty = 1;
 
-);
 commit;
