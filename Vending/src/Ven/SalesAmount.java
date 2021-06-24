@@ -40,7 +40,7 @@ public class SalesAmount {
 						pList.getBuyQty(), pList.getTotalPrice());
 
 			}
-			System.out.println("————————————————————————————————————————————————");
+			System.out.println("================================================");
 			drinkSelect();
 
 		} catch (SQLException e) {
@@ -61,8 +61,8 @@ public class SalesAmount {
 	          
 	          //상품별 매출 출력
 	          for(;;) {
-	             System.out.println("————————————————————————————————————————————————");
 	             System.out.print("상품별 매출 확인 \n");
+	             System.out.println("————————————————————————————————————————————————");
 	             System.out.print("음료이름 입력 : ");
 	             System.out.println();
 	            String name = sc.nextLine();
@@ -76,7 +76,7 @@ public class SalesAmount {
 
 	                
 
-	                // 4. 주문 추가 / 주문 종료 선택
+	                // 추가매출확인, 종
 	                System.out.println("1. 다른 상품 매출 확인 \n2. 종료");
 	                int num = sc.nextInt();
 	                if(num==2) {
@@ -84,12 +84,13 @@ public class SalesAmount {
 	                   break;
 	                }
 	                   
-	             } else {
+	              else {
 	                System.out.println("매출 확인 실패");
-	             }
-	          
+	            
+	              }
 	          }
 	          
+	      
 	       } catch (SQLException e) {
 	          // TODO Auto-generated catch block
 	          e.printStackTrace();
@@ -98,5 +99,5 @@ public class SalesAmount {
 	    }
 		
 		
-	}
+}
 

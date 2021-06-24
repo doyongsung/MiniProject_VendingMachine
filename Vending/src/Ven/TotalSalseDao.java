@@ -79,7 +79,7 @@ public class TotalSalseDao {
       }
      
      //2. 입력받은 상품만 출력
-     int insertProductList(Connection conn, String name) {
+     int insertProductList(Connection conn, SalesAmount) {
         
         int result = 0;
         PreparedStatement pstmt = null;
