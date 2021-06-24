@@ -108,33 +108,33 @@ public class ProductListDao {
 
 	// 3. 수정
 	int editProductList(Connection conn, ProductList ProductList) {
-	      
-	      int result = 0;
-	      PreparedStatement pstmt = null;
 
-	      try {
-	         String sql = "update PRODUCTINFO set itemQty=itemQty+? where itemcode=?";
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setInt(1, ProductList.getItemQty());
-	         pstmt.setInt (2, ProductList.getItemcode());
-	         
-	         result = pstmt.executeUpdate();
-	            
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      } finally {
-	         if(pstmt != null) {
-	            try {
-	               pstmt.close();
-	            } catch (SQLException e) {
-	               // TODO Auto-generated catch block
-	               e.printStackTrace();
-	            }
-	         }
-	      }
-	      return result;
-	   }
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "update PRODUCTINFO set itemQty=itemQty+? where itemcode=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ProductList.getItemQty());
+			pstmt.setInt(2, ProductList.getItemcode());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
 
 	// 삭제 Manager
 	int deleteProduct(Connection conn, int itemcode) {
@@ -173,22 +173,21 @@ public class ProductListDao {
 	// 전체 타입 검색기능
 	// 반환타입 List<productList>
 	// 매개변수 - Connection 객체 : Statement
-	ArrayList<ProductList> getBuylist(Connection conn,ProductList PList) {
+	ArrayList<ProductList> getBuylist(Connection conn, ProductList PList) {
 
 		ArrayList<ProductList> list = null;
 
 		// 데이터 베이스의 ProductList 테이블 이용 select 결과물 -> list 에 저장
-		
+
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		try {
-			
+
 			String sql = "SELECT name,price FROM productinfo where itemcode = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, PList.getItemcode());
-			
+
 			// 결과 받아오기
-			
 
 			rs = ps.executeQuery();
 			list = new ArrayList<>();

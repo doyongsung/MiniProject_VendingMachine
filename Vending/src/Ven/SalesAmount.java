@@ -51,24 +51,19 @@ public class SalesAmount {
 	}
 
 	void drinkSelect() {
-		  Connection conn = null;
-	      
-	      String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-	      String user = "hr";
-	      String pw = "tiger";
-	      try {
-	          conn = DriverManager.getConnection(jdbcUrl, user, pw);
-	          
-	          
-	        
-	          
-	      
-	       } catch (SQLException e) {
-	          // TODO Auto-generated catch block
-	          e.printStackTrace();
-	       }
-	       
-	    }
-		
-		
+		Connection conn = null;
+
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		try {
+			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }

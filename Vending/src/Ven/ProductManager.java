@@ -44,6 +44,8 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 
 	}
@@ -79,6 +81,8 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 
 	}
@@ -113,13 +117,15 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 
 	}
 
 	void saleShowinfo() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
-		
+
 		Scanner sc = new Scanner(System.in);
 
 		try {
@@ -159,6 +165,8 @@ public class ProductManager {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 	}
 
@@ -222,6 +230,8 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 	}
 
@@ -256,6 +266,8 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 
 	}

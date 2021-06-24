@@ -6,7 +6,6 @@ public class TotalList {
 	private String name;
 	private int price;
 	private int itemQty;
-	// BUYINFO 추가
 	private int buyQty;
 	private int totalPrice;
 
@@ -19,7 +18,7 @@ public class TotalList {
 
 	public TotalList(String name) {
 		this.name = name;
-	
+
 	}
 
 	public int getItemcode() {

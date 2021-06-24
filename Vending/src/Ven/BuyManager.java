@@ -35,8 +35,8 @@ public class BuyManager {
 			System.out.println("음료번호 \t 음료이름 \t 음료가격 ");
 			System.out.println("-----------------------------------");
 
-			// 써야되는 부분 
-			
+			// 써야되는 부분
+
 			for (ProductList pl : list) {
 				System.out.printf("%d \t %s \t %d \n", pl.getItemcode(), pl.getName(), pl.getPrice());
 			}

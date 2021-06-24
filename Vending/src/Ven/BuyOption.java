@@ -20,12 +20,11 @@ public class BuyOption {
 				System.out.println("-----------------------------------");
 				System.out.println("원하시는 음료 번호를 입력해주세요.");
 				int r = sc.nextInt();
-				
-				
+
 				pm.buyList(r);
 				// 1. 추가 구매 2. 프로그램 종료 commit 하고나서 뿌려주는 문장
 				// 추가 하면 다시 pm.buylist(r) 이동
-				// 
+				//
 				b = 3;
 			}
 
