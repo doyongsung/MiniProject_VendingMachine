@@ -50,14 +50,11 @@ public class CoinDAO {
 			re2 = stmt2.executeQuery(sql2);
 
 			list = new ArrayList<>();
-			list2 = new ArrayList<>();
 
 			// 데이터를 ProductList 객체로 생성 -> list에 저장
 
 			while (re2.next()) {
-
 				System.out.printf("======== 총 잔액 : %d ======== \n", re2.getInt(1));
-
 			}
 
 			while (rs.next()) {
@@ -128,4 +125,5 @@ public class CoinDAO {
 		return result;
 	}
 
+	
 }

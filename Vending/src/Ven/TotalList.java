@@ -1,35 +1,25 @@
 package Ven;
 
-public class ProductList {
+public class TotalList {
 
 	private int itemCode;
 	private String name;
 	private int price;
 	private int itemQty;
+	// BUYINFO 추가
+	private int buyQty;
+	private int totalPrice;
 
-	public ProductList(int itemCode, int itemQty) {
-		super();
-		this.itemCode = itemCode;
-		this.itemQty = itemQty;
-	}
-
-	public ProductList(int itemCode) {
-		super();
-		this.itemCode = itemCode;
-
-	}
-
-	public ProductList(String name, int price) {
-		super();
-		this.name = name;
-		this.price = price;
-	}
-
-	public ProductList(int itemCode, String name, int price, int itemQty) {
+	public TotalList(int itemCode, String name, int buyQty, int totalPrice) {
 		this.itemCode = itemCode;
 		this.name = name;
-		this.price = price;
-		this.itemQty = itemQty;
+		this.buyQty = buyQty;
+		this.totalPrice = totalPrice;
+	}
+
+	public TotalList(String name) {
+		this.name = name;
+	
 	}
 
 	public int getItemcode() {
@@ -64,10 +54,27 @@ public class ProductList {
 		this.itemQty = itemQty;
 	}
 
+	// BUYINFO
+	public int getBuyQty() {
+		return buyQty;
+	}
+
+	public void setBuyQty(int buyQty) {
+		this.buyQty = buyQty;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductList [itemCode=" + itemCode + ", name=" + name + ", price=" + price + ", itemQty=" + itemQty
-				+ "]";
+				+ ", buyQty=" + buyQty + ", totalPrice=" + totalPrice + "]";
 	}
 
 }

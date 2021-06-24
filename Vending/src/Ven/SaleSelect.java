@@ -5,11 +5,14 @@ import java.util.Scanner;
 public class SaleSelect {
 
 	void SaleSelect() {
-		
+
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
+		SalesAmount totalSale = new SalesAmount(TotalSalseDao.getInstance());
+		Order order = new Order(ProductListDao.getInstance());
+		
+		
 		Scanner sc = new Scanner(System.in);
-
 
 		System.out.println("------------- 관리자 모드 ------------");
 		System.out.println("1. 음료 재고 목록 조회");
@@ -28,10 +31,12 @@ public class SaleSelect {
 			coin.CoinList();
 			break;
 		case 3:
-
+			totalSale.totalList();
 			break;
 		case 4:
-			System.out.println("프로그램을 종료합니다.");
+			
+			order.stockageList();
+			order.order();
 			return;
 
 		}

@@ -33,11 +33,10 @@ public class CoinSearch {
 			System.out.println("동전 갯수를 수정합니다.");
 
 			int editData = scanner.nextInt();
-			
 
-			CoinList coinlist = new CoinList(num,editData);
+			CoinList coinlist = new CoinList(num);
 
-			int result = dao.editDept(conn, coinlist);
+			int result = dao.editDept(conn, coinlist); // 수정
 
 			if (result > 0) {
 				System.out.println("수정되었습니다.");
@@ -59,7 +58,7 @@ public class CoinSearch {
 		Connection conn = null;
 		Scanner scanner = new Scanner(System.in);
 		CoinSearch coinsearch = new CoinSearch(dao.getInstance());
-		
+
 		// 2.연결
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
