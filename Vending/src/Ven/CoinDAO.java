@@ -1,14 +1,13 @@
 package Ven;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
 
 public class CoinDAO {
 	private CoinDAO() {
@@ -29,7 +28,7 @@ public class CoinDAO {
 	ArrayList<CoinList> getCoinLists(Connection conn) {
 
 		ArrayList<CoinList> list = null;
-		ArrayList<CoinList> list2 = null;
+		
 
 		// 데이터 베이스의 ProductList 테이블 이용 select 결과물 -> list 에 저장
 		Statement stmt = null;

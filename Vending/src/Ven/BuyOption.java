@@ -3,8 +3,7 @@ package Ven;
 import java.util.Scanner;
 
 public class BuyOption {
-	private Scanner name;
-	private Scanner price;
+
 
 	void VendingMachine() {
 		BuyManager manager = new BuyManager(ProductListDao.getInstance());
