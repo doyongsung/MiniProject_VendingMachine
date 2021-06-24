@@ -16,18 +16,17 @@ public class BuyManager {
 	private ProductListDao dao;
 	private Scanner sc;
 	
-<<<<<<< Updated upstream
-=======
+
 	int buyCode;
 	int buyQty;
 	int totalPrice;
 
->>>>>>> Stashed changes
+
 	public BuyManager(ProductListDao dao) {
 		this.dao = dao;
 		sc = new Scanner(System.in);
 	}
-<<<<<<< Updated upstream
+
 //	 //돈과 음료를 선택
 //    //{콜라 : 2,000, 사이다 : 1,000, 주스 : 1,000, 생수 : 500}
 //    Scanner scan = new Scanner(System.in);
@@ -68,17 +67,7 @@ public class BuyManager {
 	
 		
 
-		void buy() {
-			ProductManager manager = new ProductManager(ProductListDao.getInstance());
-			Scanner sc = new Scanner(System.in);
-			Connection conn = null;
-			
-			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String pw = "tiger";
-=======
-	
-	
+		
 
 	// 구매> 음료 리스트
 	void buyitemList() {
@@ -88,11 +77,6 @@ public class BuyManager {
 		String user = "hr";
 		String pw = "tiger";
 
-		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
->>>>>>> Stashed changes
-
-			
 			try {
 				conn = DriverManager.getConnection(jdbcUrl,user,pw);
 				
@@ -119,14 +103,10 @@ public class BuyManager {
 				e.printStackTrace();
 			}
 			
-		}
-
-<<<<<<< Updated upstream
-
 		
-			
-=======
+		
 	}
+	
 	
 	
 	
@@ -218,5 +198,4 @@ public class BuyManager {
 		
 	}
 
->>>>>>> Stashed changes
 }

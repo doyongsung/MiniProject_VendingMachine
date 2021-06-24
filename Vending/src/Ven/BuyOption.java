@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 //package Ven;
 //
 //import java.sql.ResultSet;
@@ -84,9 +81,7 @@
 //		}
 //
 //	}
-<<<<<<< Updated upstream
-//}
-=======
+
 //}
 
 package Ven;
@@ -120,4 +115,4 @@ public class BuyOption {
 	}
 }
 
->>>>>>> Stashed changes
+

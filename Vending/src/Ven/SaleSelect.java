@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SaleSelect {
 
-<<<<<<< Updated upstream
+
 	void SaleSelect() {
 //		CoinSearch coinSearch = new CoinSearch(CoinDao.getInstance());
 		Scanner sc = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class SaleSelect {
 		}
 
 	}
-=======
+
 //	void SaleSelect() {
 //
 //		ProductManager manager = new ProductManager(ProductListDao.getInstance());
@@ -72,6 +72,6 @@ public class SaleSelect {
 //		}
 
 //	}
->>>>>>> Stashed changes
+
 
 }
