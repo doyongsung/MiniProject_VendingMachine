@@ -25,7 +25,7 @@ public class BuyOption {
 
 				// 콜라선택
 				if (num == 1) {
-					System.out.println(음료이름+"(을)를 선택하셨습니다.");
+					System.out.println("(을)를 선택하셨습니다.");
 					System.out.printf("구매수량을 입력해주세요 : ");
 					int qty = Integer.parseInt(sc.nextLine());
 					int total = qty * 700;
