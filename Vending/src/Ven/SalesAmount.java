@@ -60,23 +60,23 @@ public class SalesAmount {
 	          conn = DriverManager.getConnection(jdbcUrl, user, pw);
 	          
 	          //상품별 매출 출력
-	          for(;;) {
+	          while(true){
 	             System.out.print("상품별 매출 확인 \n");
 	             System.out.println("————————————————————————————————————————————————");
 	             System.out.print("음료이름 입력 : ");
 	             System.out.println();
 	            String name = sc.nextLine();
 
-	             int result = dao.insertProductList(conn, name);
+
 
 	              
-	             if(result > 0) {
+	             {
 
 	    			}
 
 	                
 
-	                // 추가매출확인, 종
+	                // 추가 매출확인, 종료
 	                System.out.println("1. 다른 상품 매출 확인 \n2. 종료");
 	                int num = sc.nextInt();
 	                if(num==2) {

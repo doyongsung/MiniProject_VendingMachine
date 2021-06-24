@@ -74,38 +74,5 @@ public class TotalSalseDao {
       }
         
       return list;
-      
-
-      }
-     
-     //2. 입력받은 상품만 출력
-     int insertProductList(Connection conn, SalesAmount) {
-        
-        int result = 0;
-        PreparedStatement pstmt = null;
-        
-        try {
-           String sql =
-                 "select p.itemcode,p.name, b.buyqty, b.totalprice from PRODUCTINFO p, BUYINFO b where p.itemcode=b.itemcode and p.name = ?";
-           pstmt = conn.prepareStatement(sql);
-           pstmt.setString(1, name);
-           
-           
-        result = pstmt.executeUpdate();
-           
-        } catch (SQLException e) {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-        } finally {
-           if(pstmt != null) {
-              try {
-                 pstmt.close();
-              } catch (SQLException e) {
-                 // TODO Auto-generated catch block
-                 e.printStackTrace();
-              }
-           }
-        }
-        return result;
      }
 }
