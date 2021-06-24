@@ -21,7 +21,8 @@ public class BuyOption {
 				int r = sc.nextInt();
 
 				pm.buyList(r);
-				// 1. 추가 구매 2. 프로그램 종료 commit 하고나서 뿌려주는 문장
+				// 1. 추가 구매 
+				// 2. 프로그램 종료 commit 하고나서 뿌려주는 문장
 				// 추가 하면 다시 pm.buylist(r) 이동
 				//
 				b = 3;

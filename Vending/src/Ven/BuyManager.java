@@ -44,7 +44,47 @@ public class BuyManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
+	
+	//입력
+		void BuyinputData() {
+
+			Connection conn = null;
+
+			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "hr";
+			String pw = "tiger";
+
+			try {
+				conn = DriverManager.getConnection(jdbcUrl, user, pw);
+
+				System.out.println("음료 정보를 입력합니다.");
+				System.out.println("음료이름 음료가격 재고 순으로 입력해주세요");
+				System.out.println("ex) 음료수 2000 20");
+				String inputData = sc.nextLine();
+				String[] deptdata = inputData.split(" ");
+
+				ProductList pList = new ProductList(0, deptdata[0], Integer.parseInt(deptdata[1]),
+						Integer.parseInt(deptdata[2]));
+
+				int result = dao.insertProductList(conn, pList);
+
+				if (result > 0) {
+					System.out.println("입력되었습니다.");
+				} else {
+					System.out.println("입력 실패");
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NumberFormatException e) {
+				System.out.println("잘못된정보입니다. 다시입력해주세요");
+			}
+
+		}
+		
+
+		
 
 }

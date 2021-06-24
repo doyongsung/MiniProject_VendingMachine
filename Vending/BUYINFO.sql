@@ -22,7 +22,9 @@ INSERT INTO BUYINFO VALUES (BINFO_BCODE_SEQ.NEXTVAL,5,3000,2);
 INSERT INTO BUYINFO VALUES (BINFO_BCODE_SEQ.NEXTVAL,2,12000,4);
 
 select p.itemcode,p.name, b.buyqty, b.totalprice from PRODUCTINFO p, BUYINFO b where p.itemcode=b.itemcode;
-select p.itemcode,p.name, b.buyqty, b.totalprice 
+
+SELECT ITEMCODE, P.NAME, B.BUYQTY, B.TOTALPRICE FROM PRODUCTINFO P INNER JOIN BUYINFO B USING(ITEMCODE);
+
 from PRODUCTINFO p, BUYINFO b 
 where p.itemcode=b.itemcode and p.itemcode = '1';
 

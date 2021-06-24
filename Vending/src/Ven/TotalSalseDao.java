@@ -35,8 +35,7 @@ public class TotalSalseDao {
         
         try {
          stmt = conn.createStatement();
-         String sql = "select p.itemcode,p.name, b.buyqty, b.totalprice from PRODUCTINFO p, BUYINFO b "
-         		+ "where p.itemcode=b.itemcode order by b.totalprice desc";
+         String sql = "SELECT ITEMCODE, P.NAME, B.BUYQTY, B.TOTALPRICE FROM PRODUCTINFO P INNER JOIN BUYINFO B USING(ITEMCODE)";
          
          //결과 받아오기
          rs = stmt.executeQuery(sql);

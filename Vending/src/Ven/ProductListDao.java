@@ -257,4 +257,35 @@ public class ProductListDao {
 		return list;
 
 	}
+	
+	// 2. 구매이력테이블에 저장
+	int insertTotaList(Connection conn, TotalList tList) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "INSERT INTO BUYINFO VALUES (BINFO_BCODE_SEQ.NEXTVAL, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tList.getBuyQty());
+			pstmt.setInt(2, tList.getTotalPrice());
+			pstmt.setInt(3, tList.getItemQty());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
 }

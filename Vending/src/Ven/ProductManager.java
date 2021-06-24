@@ -49,7 +49,8 @@ public class ProductManager {
 		}
 
 	}
-
+	
+//입력
 	void inputData() {
 
 		Connection conn = null;
@@ -87,6 +88,7 @@ public class ProductManager {
 
 	}
 
+	//수정
 	void editItem() {
 		Connection conn = null;
 
@@ -122,7 +124,7 @@ public class ProductManager {
 		}
 
 	}
-
+// 출력
 	void saleShowinfo() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 
