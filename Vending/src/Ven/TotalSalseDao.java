@@ -36,7 +36,7 @@ public class TotalSalseDao {
         try {
          stmt = conn.createStatement();
         // String sql = "SELECT ITEMCODE, P.NAME, B.BUYQTY, B.TOTALPRICE FROM PRODUCTINFO P INNER JOIN BUYINFO B USING(ITEMCODE)";
-         String sql = "select b.itemcode, p.name, sum(b.totalprice) from PRODUCTINFO p , BUYINFO b where b.itemcode = p.itemcode group by b.itemcode, p.name";
+         String sql = "select b.itemcode, p.name, sum(b.buyqty), sum(b.totalprice) total from PRODUCTINFO p , BUYINFO b where b.itemcode = p.itemcode group by b.itemcode, p.name order by total desc";
          
          //결과 받아오기
          rs = stmt.executeQuery(sql);
@@ -47,7 +47,7 @@ public class TotalSalseDao {
          
          while(rs.next()) {
         	 //TotalList PL = new TotalList(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
-        	 TotalList TL = new TotalList(rs.getInt(1), rs.getString(2),rs.getInt(3));
+        	 TotalList TL = new TotalList(rs.getInt(1), rs.getString(2),rs.getInt(3),rs.getInt(4));
             
             list.add(TL);
          }

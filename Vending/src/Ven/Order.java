@@ -52,6 +52,7 @@ public class Order {
 	
 	// 2. 주문받기 : 이름, 수량
 	void order() {
+		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		Connection conn = null;
 		
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -83,12 +84,12 @@ public class Order {
 					stockageList();
 
 					// 4. 주문 추가 / 주문 종료 선택
-
-					System.out.println("1. 추가 발주 \n2. 종료");
+					
+					System.out.println("1. 추가 발주 \n2. 뒤로가기 \n3. 종료");
 					int num = sc.nextInt();
 					if(num==2) {
-
-					if (num == 2) {
+						manager.SaleSelect();
+					if (num == 3) {
 
 						System.out.println("주문을 종료합니다.");
 						break;
