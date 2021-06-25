@@ -347,7 +347,7 @@ public class ProductManager {
 	void SaleSelect() {
 
 		
-		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
+	//	CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		SalesAmount sales = new SalesAmount(TotalSalseDao.getInstance());
 		Order order = new Order(ProductListDao.getInstance());
 		MainSelect main = new MainSelect();
@@ -369,7 +369,7 @@ public class ProductManager {
 		saleShowinfo();
 			break;
 		case 2:
-			coin.CoinList();
+			//coin.CoinList();
 			break;
 		case 3:
 			sales.totalList();
