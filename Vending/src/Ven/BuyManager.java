@@ -62,7 +62,7 @@
 		void buy() {
 			Connection conn = null;
 			Scanner sc = new Scanner(System.in);
-			
+			ProductManager pm = new ProductManager(ProductListDao.getInstance());
 			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "hr";
 			String pw = "tiger";
@@ -81,6 +81,9 @@
 					
 					ProductList numlist = new ProductList(buyCode,buyQty);
 		
+					ProductList ProductList = new ProductList(buyCode, buyQty);
+					int result = dao.subtractProductList(conn, ProductList);
+					 pm.buyList(buyCode,buyQty);
 					List<ProductList> list = dao.getBuylist(conn, numlist);
 		
 					System.out.println("음료이름 \t 음료가격 \t");
@@ -103,6 +106,11 @@
 						break;
 						
 					}
+					if (result > 0) {
+					} else {
+						System.out.println("주문 실패");
+					}
+				
 				}
 				
 			} catch (SQLException e) {

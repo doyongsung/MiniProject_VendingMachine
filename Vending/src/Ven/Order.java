@@ -118,7 +118,7 @@ public class Order {
 	
 
 
-	
+	//차감
 	void subtract() {
 		ProductManager pm = new ProductManager(ProductListDao.getInstance());
 		BuyManager manager = new BuyManager(ProductListDao.getInstance());
@@ -148,6 +148,7 @@ public class Order {
 				ProductList ProductList = new ProductList(orderCode, orderQty);
 				int result = dao.subtractProductList(conn, ProductList);
 				 pm.buyList(orderCode,orderQty);
+			
 				if (result > 0) {
 				} else {
 					System.out.println("주문 실패");
