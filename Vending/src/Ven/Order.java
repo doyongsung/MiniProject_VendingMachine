@@ -16,31 +16,6 @@ public class Order {
 	}
 
 	// 1. 재고목록 출력
-	void stockageList() {
-		Connection conn = null;
-
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-
-		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			List<ProductList> list = dao.getProductList(conn);
-
-			System.out.println("———————————————————재고 목록——————————————————————");
-			System.out.println("음료번호 \t 음료이름 \t 수량 ");
-			System.out.println("————————————————————————————————————————————————");
-
-			for (ProductList pList : list) {
-				System.out.printf("%d \t %s \t %d \n", pList.getItemcode(), pList.getName(), pList.getItemQty());
-			}
-			System.out.println("————————————————————————————————————————————————");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-
-	}
 
 	// 2. 주문받기
 	void order() {
@@ -73,7 +48,7 @@ public class Order {
 					System.out.println();
 
 					// 3. 주문 내용이 저장된 재고 목록 출력
-					stockageList();
+					manager.itemList();
 
 					// 4. 주문 추가 / 주문 종료 선택
 

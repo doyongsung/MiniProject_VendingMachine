@@ -74,56 +74,68 @@ public class BuyManager {
 				System.out.print("주문> 구매 갯수 : ");
 				buyQty = sc.nextInt();
 				System.out.println();
-				pm.buyList(buyCode, buyQty);
+				CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 
 				if (getItemQty(buyCode) > buyQty) {
 
 					ProductList numlist = new ProductList(buyCode);
 					List<ProductList> list = dao.getBuylist(conn, numlist);
 
-					System.out.println("음료이름 \t 음료가격 \t");
-					System.out.println("---------------------------------");
+					System.out.println("구매한 음료 이름 \t 구매한 음료 개수 \t 구매한 총 가격 \t");
+					System.out.println("-----------------------------------------------");
 
 					for (ProductList pl : list) {
 						totalPrice = pl.getPrice() * buyQty;
 
-						System.out.printf("%s \t %d \t \n", pl.getName(), totalPrice);
-						buylist.add(new ProductList(pl.getName(), totalPrice));
+						System.out.printf("%s \t\t %d \t\t %d \t\t \n", pl.getName(), buyQty, totalPrice);
+						buylist.add(new ProductList(pl.getName(), buyQty, totalPrice));
 
 					}
 
-					System.out.println("---------------------------------");
-					System.out.println("1. 추가구매 \n2. 이전 메뉴 \n3. 프로그램 종료");
+					System.out.println("-----------------------------------------------");
+
+					System.out.println("1. 추가 구매 \n2. 구매 취소 \n3. 구매 완료");
 					int num = sc.nextInt();
 					inputBuyData();
+					switch (num) {
+					case 1:
+						buyitemList();
+						break;
+					case 2:
+						MainTest.main(null);
+						break;
+					case 3:
+
+						System.out.println("----------------- 구매 내역 ---------------------");
+						System.out.println("구매한 음료 이름 \t 구매한 음료 개수 \t 투입한 금액 \t");
+						System.out.println("-----------------------------------------------");
+						for (ProductList item : buylist) {
+							System.out.printf("%s \t\t %d \t\t %d \t\t \n", item.getName(), item.getPrice(),
+									item.getItemQty());
+
+							totalPrice += item.getItemQty();
+						}
+						System.out.println("-----------------------------------------------");
+						coin.getChange(totalPrice);
+						System.out.println("----------------- 구매 완료 ---------------------");
+						System.exit(0);
+						break;
+					}
+
+				} else {
+					System.out.println("재고 부족");
+					System.out.println("1. 추가 구매  \n2.구매 취소 \n3.구매 완료");
+					int num = sc.nextInt();
 					switch (num) {
 					case 2:
 						MainTest.main(null);
 						break;
 					case 3:
 						for (ProductList item : buylist) {
-							System.out.printf("%s %d", item.getName(), item.getPrice());
+							System.out.printf("%s %d", item.getName(), item.getPrice(), item.getPrice());
 							System.out.println("");
 						}
-						System.out.println("프로그램 종료");
-						System.exit(0);
-						break;
-					}
-					if (num == 1) {
-						buyitemList();
-					} else {
-						break;
-					}
-				} else {
-					System.out.println("재고 부족");
-					System.out.println("1.음료 선택 \n2.이전 메뉴 \n3.프로그램 종료");
-					int num = sc.nextInt();
-					switch (num) {
-					case 2:
-						MainTest.main(null);
-						break;
-					case 3:
-						System.out.println("프로그램 종료");
+						System.out.println("구매 완료");
 						System.exit(0);
 						break;
 					}

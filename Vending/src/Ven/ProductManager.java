@@ -35,11 +35,11 @@ public class ProductManager {
 
 			System.out.println("음료 번호 리스트");
 			System.out.println("————————————————————————————————————————————————");
-			System.out.println("음료번호 \t 음료이름 \t 음료가격 \t 재고");
+			System.out.println("음료번호	 음료이름 \t 음료가격 \t 재고");
 			System.out.println("————————————————————————————————————————————————");
 
 			for (ProductList pl : list) {
-				System.out.printf("%d \t %s \t %d \t %d \n", pl.getItemcode(), pl.getName(), pl.getPrice(),
+				System.out.printf("%d	 %s \t %d \t\t %d \n", pl.getItemcode(), pl.getName(), pl.getPrice(),
 						pl.getItemQty());
 			}
 		} catch (SQLException e) {
@@ -218,12 +218,12 @@ public class ProductManager {
 
 				System.out.println();
 				System.out.println("———————————————————관리자 모드—————————————————————");
-				System.out.println("1.음료 리스트");
-				System.out.println("2.음료 추가 ");
-				System.out.println("3.음료 수정");
-				System.out.println("4.음료 삭제");
-				System.out.println("5.음료 재고");
-				System.out.println("6.뒤로 가기");
+				manager.itemList();
+				System.out.println("1.음료 추가 ");
+				System.out.println("2.음료 수정");
+				System.out.println("3.음료 삭제");
+				System.out.println("4.음료 재고");
+				System.out.println("5.뒤로 가기");
 				System.out.println("6.프로그램 종료");
 				System.out.println("————————————————————————————————————————————————");
 				System.out.println("원하시는 기능의 번호를 입력해주세요.");
@@ -231,25 +231,22 @@ public class ProductManager {
 
 				switch (num) {
 				case 1:
-					manager.itemList();
-					break;
-				case 2:
 					manager.inputData();
 					break;
-				case 3:
+				case 2:
 					manager.update();
 					break;
-				case 4:
+				case 3:
 					manager.delproduct();
 					break;
-				case 5:
-					order.stockageList();
+				case 4:
+					manager.itemList();
 					order.order();
 					break;
-				case 6:
+				case 5:
 					SaleSelect();
 					break;
-				case 7:
+				case 6:
 					System.out.println("프로그램을 정상적으로 종료합니다.");
 					System.exit(0);
 				}
@@ -269,7 +266,7 @@ public class ProductManager {
 		// Connection 객체 생성 -> 트렌젝션 처리
 		Connection conn = null;
 		Scanner sc = new Scanner(System.in);
-		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
+
 		// 2.연결
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
@@ -277,20 +274,8 @@ public class ProductManager {
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-
 			ProductList numlist = new ProductList(num);
-
 			List<ProductList> list = dao.getBuylist(conn, numlist);
-
-			System.out.println("음료이름 \t 음료가격 \t");
-			System.out.println("---------------------------------");
-
-			for (ProductList pl : list) {
-
-				System.out.printf("%s \t %d \t \n", pl.getName(), (pl.getPrice() * num2));
-
-				coin.getChange(pl.getPrice() * num2);
-			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -331,7 +316,7 @@ public class ProductManager {
 			sales.totalList();
 			break;
 		case 4:
-			order.stockageList();
+			itemList();
 			order.order();
 			return;
 		case 5:

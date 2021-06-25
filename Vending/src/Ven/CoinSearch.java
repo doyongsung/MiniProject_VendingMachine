@@ -1,4 +1,4 @@
-//Coinsearch
+
 package Ven;
 
 import java.sql.Connection;
@@ -9,44 +9,43 @@ import java.util.Scanner;
 
 public class CoinSearch {
 
+	Scanner scanner = new Scanner(System.in);
+	Connection conn = null;
+	ProductManager manager = new ProductManager(ProductListDao.getInstance());
+	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user = "hr";
+	String pw = "tiger";
+
 	private CoinDAO dao;
-	private Scanner sc1;
 
 	public CoinSearch(CoinDAO dao) {
 		this.dao = dao;
-		sc1 = new Scanner(System.in);
+
 	}
 
 	void CoinChange(int num) {
 
-		Scanner scanner = new Scanner(System.in);
-
-		// Connection 객체 생성 -> 트렌젝션 처리
-		Connection conn = null;
-
-		// 2. 연결
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			System.out.println("동전 갯수를 수정합니다.");
+			System.out.println("동전을 정리합니다");
 
 			int editData = scanner.nextInt();
 
-			CoinList coinlist = new CoinList(num, editData);
+			if (editData > 0) {
+				CoinList coinlist = new CoinList(num, editData);
 
-			int result = dao.editDept(conn, coinlist); // 수정
-
-			if (result > 0) {
-				System.out.println("수정되었습니다.");
+				int result = dao.editDept(conn, coinlist);
+				if (result > 0) {
+					System.out.println("동전 정리");
+				} else {
+					System.out.println("동전 정리 실패");
+				}
 			} else {
-				System.out.println("수정실패!!!");
+				System.out.println("올바른 정리를 부탁합니다.");
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -54,34 +53,23 @@ public class CoinSearch {
 
 	void getChange(int num) {
 
-		// Connection 객체 생성 -> 트렌젝션 처리
-		Connection conn = null;
-
-		// 2. 연결
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			System.out.println("동전 분류중..");
+
+			System.out.println("투입된 금액 동전 	분류중..");
 
 			int[] coinlist = { 500, 100 };
 
 			for (int i = 0; i < coinlist.length; i++) {
 				if ((num / coinlist[i]) > 0) {
 
-					System.out.println(coinlist[i] + " " + num / coinlist[i]);
-
 					CoinList coinlist1 = new CoinList(coinlist[i], num / coinlist[i]);
-					// key 100, count 1
+
 					int result = dao.UpCoin(conn, coinlist1);
-					System.out.println(result);
 
 					if (result > 0) {
-						System.out.println(coinlist[i] + "원 투입 ");
 					} else {
-						System.out.println("수정실패!!!");
+						System.out.println("분류 실패");
 					}
 					num %= coinlist[i];
 
@@ -89,21 +77,14 @@ public class CoinSearch {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
 	}
 
-	// 전체 리스트 출력 메소드
-	// DAO 에서 데이터 리스트를 받고 출력 처리
 	void CoinList() {
-		// Connection 객체 생성 -> 트렌젝션 처리
-		Connection conn = null;
-		Scanner scanner = new Scanner(System.in);
-		CoinSearch coinsearch = new CoinSearch(dao.getInstance());
 
-		// 2.연결
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
 		String pw = "tiger";
@@ -129,25 +110,24 @@ public class CoinSearch {
 
 				System.out.println("1. 오백원 관리");
 				System.out.println("2. 백원 관리");
-				System.out.println("3. 프로그램 종료");
+				System.out.println("3. 뒤로 가기");
 				System.out.println("입력 >>");
 				int num = scanner.nextInt();
 
 				switch (num) {
 				case 1:
-					coinsearch.CoinChange(num);
+					CoinChange(num);
 					break;
 				case 2:
-					coinsearch.CoinChange(num);
+					CoinChange(num);
 					break;
 				case 3:
-					b = 3;
-					break;
 
+					manager.SaleSelect();
 				}
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 
