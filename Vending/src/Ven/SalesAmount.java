@@ -30,40 +30,20 @@ public class SalesAmount {
 
 			List<TotalList> list = dao.gettTotalList(conn);
 
-			System.out.println("총 매출 리스트");
+			System.out.println("판매 매출 리스트");
 			System.out.println("————————————————————————————————————————————————");
 			System.out.println("음료번호 \t 음료이름 \t 판매수량 \t 총판매금액 ");
 			System.out.println("————————————————————————————————————————————————");
 
-			for (TotalList pList : list) {
-				System.out.printf("%d \t %s \t \\t  %d \t %d \t \n", pList.getItemcode(), pList.getName(),
-						pList.getBuyQty(), pList.getTotalPrice());
+			for (TotalList tList : list) {
+				System.out.printf("%d \t %s \t %d \t %d \t \n", tList.getItemcode(), tList.getName(),tList.getBuyQty(), tList.getTotalPrice());
 
 			}
 			System.out.println("================================================");
-			drinkSelect();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-
-	void drinkSelect() {
-		Connection conn = null;
-
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
 }

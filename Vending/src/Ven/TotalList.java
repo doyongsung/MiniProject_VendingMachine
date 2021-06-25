@@ -14,7 +14,15 @@ public class TotalList {
 		this.name = name;
 		this.buyQty = buyQty;
 		this.totalPrice = totalPrice;
+
 	}
+	
+	public TotalList(int itemCode, String name, int totalPrice) {
+		this.itemCode = itemCode;
+		this.name = name;
+		this.totalPrice = totalPrice;
+	}
+
 
 	public TotalList(String name) {
 		this.name = name;

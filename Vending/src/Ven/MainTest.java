@@ -8,7 +8,7 @@ public class MainTest {
 
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		SaleSelect saleselect = new SaleSelect();
-		BuyOption buy = new BuyOption();
+		BuyManager buy = new BuyManager(ProductListDao.getInstance());
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("================================================");
@@ -24,7 +24,8 @@ public class MainTest {
 				int choice = Integer.parseInt(sc.nextLine());
 				switch (choice) {
 				case 1:
-					buy.VendingMachine();
+					buy.buyitemList();
+					buy.buy();
 					break;
 
 				case 2:

@@ -16,7 +16,6 @@ public class ProductList {
 	public ProductList(int itemCode) {
 		super();
 		this.itemCode = itemCode;
-
 	}
 
 	public ProductList(String name, int price) {

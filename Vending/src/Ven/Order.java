@@ -10,19 +10,23 @@ public class Order {
 	private ProductListDao dao;
 	private Scanner sc;
 	SaleSelect sal = new SaleSelect();
+	
+	Connection conn = null;
+	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user = "hr";
+	String pw = "tiger";
 
 	public Order(ProductListDao dao) {
 		this.dao = dao;
 		sc = new Scanner(System.in);
 	}
 
-	// 1. 재고목록(제품명, 수량) 출력
+	
+	
+	
+	
+	//발주> 음료리스트 출력
 	void stockageList() {
-		Connection conn = null;
-
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
@@ -46,23 +50,20 @@ public class Order {
 
 	}
 
-	// 2. 주문받기 : 이름, 수량
+	
+	
+	
+	
+	//발주>
 	void order() {
-		Connection conn = null;
-
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
-			// 주문
 			for (;;) {
 				System.out.println("====================================");
 				System.out.print("발주 > \t 음료코드 입력 : ");
 				int orderCode = sc.nextInt();
-				System.out.println();
 				System.out.print("발주 > \t 주문수량 입력 : ");
 				int orderQty = sc.nextInt();
 				System.out.println();
@@ -75,18 +76,19 @@ public class Order {
 					System.out.println();
 					System.out.println();
 
-					// 3. 주문 내용이 저장된 재고 목록 출력
+					//주문 내용 저장된 재고 목록 출력
 					stockageList();
 
-					// 4. 주문 추가 / 주문 종료 선택
+					//주문 추가 / 주문 종료 선택
 					System.out.println("1. 추가 발주 \n2. 관리자 메뉴 \n3. 프로그램 종료");
 					int num = sc.nextInt();
 					switch (num) {
-					case 2 : //관리자 메뉴
+					case 2 : //관리자 메뉴 리턴
 						sal.SaleSelect();
 						break;
 					case 3 : //프로그램 종료
-						
+						System.out.println("프로그램을 정상적으로 종료합니다.");
+						System.exit(0);
 						break;
 					}
 
@@ -100,7 +102,10 @@ public class Order {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
+	
+	
+	
+	
 }

@@ -10,7 +10,6 @@ public class SaleSelect {
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		SalesAmount totalSale = new SalesAmount(TotalSalseDao.getInstance());
 		Order order = new Order(ProductListDao.getInstance());
-
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("------------- 관리자 모드 ------------");
@@ -33,7 +32,6 @@ public class SaleSelect {
 			totalSale.totalList();
 			break;
 		case 4:
-
 			order.stockageList();
 			order.order();
 			return;
