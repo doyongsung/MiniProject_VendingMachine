@@ -317,7 +317,7 @@ public class ProductManager {
 
 		
 
-			ProductList numlist = new ProductList(num);
+			ProductList numlist = new ProductList(num,num2);
 			
 			
 			
@@ -344,7 +344,7 @@ public class ProductManager {
 
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
-		SalesAmount totalSale = new SalesAmount(TotalSalseDao.getInstance());
+		SalesAmount sales = new SalesAmount(ProductListDao.getInstance());
 		Order order = new Order(ProductListDao.getInstance());
 
 		Scanner sc = new Scanner(System.in);
@@ -366,7 +366,7 @@ public class ProductManager {
 			coin.CoinList();
 			break;
 		case 3:
-			totalSale.totalList();
+			sales.totalList();
 			break;
 		case 4:
 
