@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class SaleSelect {
 
-
 	void SaleSelect() {
 //		CoinSearch coinSearch = new CoinSearch(CoinDao.getInstance());
 		Scanner sc = new Scanner(System.in);
@@ -72,6 +71,5 @@ public class SaleSelect {
 //		}
 
 //	}
-
 
 }

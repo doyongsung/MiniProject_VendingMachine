@@ -19,7 +19,7 @@ public class SalesAmount {
 	// DAO 에서 데이터 리스트를 받고 출력 처리
 	void totalList() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
-		// Connection 객체 생성 -> 트렌젝션 처리		
+		// Connection 객체 생성 -> 트렌젝션 처리
 		Connection conn = null;
 
 		// 2. 연결
@@ -37,15 +37,16 @@ public class SalesAmount {
 			System.out.println("————————————————————————————————————————————————");
 
 			for (TotalList tList : list) {
-				System.out.printf("%d \t %s \t %d \t %d \t \n", tList.getItemcode(), tList.getName(),tList.getBuyQty(), tList.getTotalPrice());
+				System.out.printf("%d \t %s \t %d \t %d \t \n", tList.getItemcode(), tList.getName(), tList.getBuyQty(),
+						tList.getTotalPrice());
 
 			}
 			System.out.println("================================================");
 			System.out.println("1. 뒤로가기      2. 종료");
 			int input = sc.nextInt();
-			if(1 == input) {
+			if (1 == input) {
 				manager.SaleSelect();
-			}else {
+			} else {
 				System.out.println("종료합니다");
 				System.exit(0);
 			}

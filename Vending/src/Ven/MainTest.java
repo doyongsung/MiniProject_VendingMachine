@@ -5,6 +5,6 @@ public class MainTest {
 
 		MainSelect main = new MainSelect();
 		main.main();
-		
+
 	}
 }
