@@ -44,13 +44,12 @@ INSERT INTO PRODUCTINFO VALUES (PINFO_ICODE_SEQ.NEXTVAL, '마운틴듀', 600, 1)
 select * from PRODUCTINFO where itemcode = ?;
 SELECT * FROM PRODUCTINFO;
 
-<<<<<<< Updated upstream
+
 drop table PRODUCTINFO;
 
 
 
 select name,ITEMQTY,PRICE from PRODUCTINFO where itemcode = 1 and  ItemQty = 1;
-=======
 
 CREATE TABLE BUYINFO (
     
@@ -86,4 +85,17 @@ drop SEQUENCE BINFO_BCODE_SEQ;
 drop TABLE BUYINFO;
 >>>>>>> Stashed changes
 
+commit;
+
+CREATE TABLE MONEY (
+ MKEY INTEGER PRIMARY KEY,
+ MNAME VARCHAR2(20) NOT NULL,
+ MVALUE INTEGER NOT NULL,
+ MCOUNT INTEGER NOT NULL
+);
+
+INSERT INTO MONEY VALUES (1,'오백원',500,10);
+INSERT INTO MONEY VALUES (2,'백원',100,10);
+
+select* from MONEY;
 commit;
