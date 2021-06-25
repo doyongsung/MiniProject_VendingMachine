@@ -115,7 +115,7 @@ public class ProductListDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO PRODUCTINFO VALUES (PRODUCTINFO_ICODE_SEQ, ?, ?, ?)";
+			String sql = "INSERT INTO PRODUCTINFO VALUES (PINFO_ICODE_SEQ.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pList.getName());
 			pstmt.setInt(2, pList.getPrice());
