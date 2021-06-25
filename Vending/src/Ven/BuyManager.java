@@ -4,23 +4,29 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class BuyManager {
 	private ProductListDao dao;
 	private Scanner sc;
+	
+	int buyCode;
+	int buyQty;
+	int totalPrice;
 
 	public BuyManager(ProductListDao dao) {
 		this.dao = dao;
 		sc = new Scanner(System.in);
 	}
+	
+	
 
-	// 구매자 자판기 음료 리스트
+	// 구매> 음료 리스트
 	void buyitemList() {
 		Connection conn = null;
 
-		// 2.연결
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "hr";
 		String pw = "tiger";
@@ -44,47 +50,98 @@ public class BuyManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 	
-	//입력
-		void BuyinputData() {
-
-			Connection conn = null;
-
-			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String pw = "tiger";
-
-			try {
-				conn = DriverManager.getConnection(jdbcUrl, user, pw);
-
-				System.out.println("음료 정보를 입력합니다.");
-				System.out.println("음료이름 음료가격 재고 순으로 입력해주세요");
-				System.out.println("ex) 음료수 2000 20");
-				String inputData = sc.nextLine();
-				String[] deptdata = inputData.split(" ");
-
-				ProductList pList = new ProductList(0, deptdata[0], Integer.parseInt(deptdata[1]),
-						Integer.parseInt(deptdata[2]));
-
-				int result = dao.insertProductList(conn, pList);
-
-				if (result > 0) {
-					System.out.println("입력되었습니다.");
-				} else {
-					System.out.println("입력 실패");
+	
+	
+	
+	
+	// 구매>
+	void buy() {
+		Connection conn = null;
+		Scanner sc = new Scanner(System.in);
+		
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		
+		try {
+			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			
+			for(;;) {
+				
+				System.out.println("---------------------------------");
+				System.out.print("주문> 음료 선택 : ");
+				buyCode = sc.nextInt();
+				System.out.print("주문> 구매 갯수 : ");
+				buyQty = sc.nextInt();
+				System.out.println();
+				
+				ProductList numlist = new ProductList(buyCode);
+	
+				List<ProductList> list = dao.getBuylist(conn, numlist);
+	
+				System.out.println("음료이름 \t 음료가격 \t");
+				System.out.println("---------------------------------");
+				
+				
+				for (ProductList pl : list) {
+					totalPrice = pl.getPrice() * buyQty;
+					System.out.printf("%s \t %d \t \n", pl.getName(), totalPrice);
 				}
+				
+				System.out.println("---------------------------------");
+				System.out.println("1. 추가구매 \n2. 프로그램 종료");
+				int num = sc.nextInt();
+				inputBuyData();
+				if(num==1) {
+					buyitemList();
+				} else {
 
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NumberFormatException e) {
-				System.out.println("잘못된정보입니다. 다시입력해주세요");
+					break;
+					
+				}
 			}
-
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	//구매내역 저장 
+	void inputBuyData() {
+		
+		Connection conn = null;
+		
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "hr";
+		String pw = "tiger";
+		
+		try {
+			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			
+			BuyList bList = new BuyList(buyQty, totalPrice, buyCode);
+			
+			int result = dao.insertBuyInfo(conn, bList);
+			
+			if(result > 0) {
+				System.out.println("구매내용 저장");
+			} else {
+				System.out.println("구매내용 저장 실");
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-
-		
+	}
+	
 
 }

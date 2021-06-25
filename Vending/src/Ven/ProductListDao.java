@@ -115,7 +115,7 @@ public class ProductListDao {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "INSERT INTO PRODUCTINFO VALUES (PINFO_ICODE_SEQ.NEXTVAL, ?, ?, ?)";
+			String sql = "INSERT INTO PRODUCTINFO VALUES (PRODUCTINFO_ICODE_SEQ, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pList.getName());
 			pstmt.setInt(2, pList.getPrice());
@@ -258,34 +258,36 @@ public class ProductListDao {
 
 	}
 	
-	// 2. 구매이력테이블에 저장
-	int insertTotaList(Connection conn, TotalList tList) {
-
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		try {
-			String sql = "INSERT INTO BUYINFO VALUES (BINFO_BCODE_SEQ.NEXTVAL, ?, ?, ?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, tList.getBuyQty());
-			pstmt.setInt(2, tList.getTotalPrice());
-			pstmt.setInt(3, tList.getItemQty());
-
-			result = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+	int insertBuyInfo(Connection conn, BuyList bList) {
+	   	 
+	   	 int result = 0;
+	   	 PreparedStatement pstmt = null;
+	   	 
+	   	 try {
+	       	 String sql =
+	       			 "INSERT INTO BUYINFO VALUES (BINFO_BCODE_SEQ.NEXTVAL, ?, ?, ?)";
+	       	 pstmt = conn.prepareStatement(sql);
+	       	 pstmt.setInt(1, bList.getBuyQty());
+	       	 pstmt.setInt(2, bList.getTotalPrice());
+	       	 pstmt.setInt(3, bList.getItemCode());
+	       	 
+	       	 result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-			}
-		}
-		return result;
-	}
+			}    	 
+	   	 return result;
+	    }
+	
+	
 }

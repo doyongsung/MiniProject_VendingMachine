@@ -293,13 +293,15 @@ public class ProductManager {
 			ProductList numlist = new ProductList(num);
 
 			List<ProductList> list = dao.getBuylist(conn, numlist);
-
+			System.out.println(" ");
+			System.out.println("[ 주문내역확인 ] ");
 			System.out.println("음료이름 \t 음료가격 \t");
 			System.out.println("---------------------------------");
 
 			for (ProductList pl : list) {
 				System.out.printf("%s \t %d \t \n", pl.getName(), (pl.getPrice() * num2));
 			}
+			System.out.println("-----------------------------------");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
