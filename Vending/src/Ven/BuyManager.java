@@ -78,6 +78,7 @@
 					System.out.print("주문> 구매 갯수 : ");
 					buyQty = sc.nextInt();
 					System.out.println();
+					pm.buyList(buyCode,buyQty);
 					
 					ProductList numlist = new ProductList(buyCode,buyQty);
 		

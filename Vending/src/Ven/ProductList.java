@@ -19,13 +19,12 @@ public class ProductList {
 		this.itemCode = itemCode;
 		this.itemQty = itemQty;
 	}
-	public ProductList(int itemCode,String name, int itemQty) {
-		this.itemCode = itemCode;
-		this.itemQty = itemQty;
-	}
 	public ProductList(String name, int price) {
 		this.name = name;
 		this.price = price;
+	}
+	public ProductList(int itemCode) {
+		this.itemCode = itemCode;
 	}
 	
 	public int getItemcode() {
