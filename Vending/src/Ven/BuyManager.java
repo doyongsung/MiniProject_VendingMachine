@@ -17,6 +17,7 @@ public class BuyManager {
 	int totalPrice;
 	int itemQty;
 	int result;
+	int totalItemQty;
 
 	// 연결
 	Connection conn = null;
@@ -114,7 +115,11 @@ public class BuyManager {
 									item.getItemQty());
 
 							totalPrice += item.getItemQty();
+							totalItemQty += item.getPrice();
 						}
+						System.out.println("-----------------------------------------------");
+						System.out.printf("\t\t %s  \t  \t  ",totalItemQty);//,totalPrice);
+						System.out.println();
 						System.out.println("-----------------------------------------------");
 						coin.getChange(totalPrice);
 						System.out.println("----------------- 구매 완료 ---------------------");
