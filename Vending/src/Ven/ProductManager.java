@@ -42,6 +42,7 @@ public class ProductManager {
 				System.out.printf("%d	 %s \t %d \t\t %d \n", pl.getItemcode(), pl.getName(), pl.getPrice(),
 						pl.getItemQty());
 			}
+			System.out.println("————————————————————————————————————————————————");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -218,9 +219,8 @@ public class ProductManager {
 				System.out.println("1.음료 추가 ");
 				System.out.println("2.음료 수정");
 				System.out.println("3.음료 삭제");
-				System.out.println("4.음료 재고");
-				System.out.println("5.뒤로 가기");
-				System.out.println("6.프로그램 종료");
+				System.out.println("4.뒤로 가기");
+				System.out.println("5.프로그램 종료");
 				System.out.println("————————————————————————————————————————————————");
 				System.out.println("원하시는 기능의 번호를 입력해주세요.");
 				int num = sc.nextInt();
@@ -236,13 +236,9 @@ public class ProductManager {
 					manager.delproduct();
 					break;
 				case 4:
-					manager.itemList();
-					order.order();
-					break;
-				case 5:
 					SaleSelect();
 					break;
-				case 6:
+				case 5:
 					System.out.println("프로그램을 정상적으로 종료합니다.");
 					System.exit(0);
 				}
