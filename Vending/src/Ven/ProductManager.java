@@ -201,11 +201,7 @@ public class ProductManager {
 		}
 	}
 
-	void selectOne(int id) {
-		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String pw = "tiger";
-	}
+	
 
 	void saleShowinfo() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
