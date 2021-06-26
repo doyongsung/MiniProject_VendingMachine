@@ -78,38 +78,6 @@ public class CoinDAO {
 
 	}
 
-	int editDept(Connection conn, CoinList coinlist) {
-
-		int result = 0;
-
-		PreparedStatement pstmt = null;
-
-		try {
-			String sql = "update MONEY set mcount=? where mkey=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, coinlist.getMoneyCount());
-			pstmt.setInt(2, coinlist.getMoenyKey());
-
-			result = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return result;
-	}
-
 	int UpCoin(Connection conn, CoinList coinlist) {
 
 		int result = 0;

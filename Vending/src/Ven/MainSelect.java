@@ -9,7 +9,6 @@ public class MainSelect {
 
 	void main() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
-
 		BuyManager bManager = new BuyManager(ProductListDao.getInstance());
 		Login login = new Login();
 

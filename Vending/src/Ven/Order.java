@@ -17,7 +17,7 @@ public class Order {
 
 	// 1. 재고목록 출력
 
-	// 2. 주문받기
+	// 2. 발주 받기
 	void order() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		Connection conn = null;
@@ -80,7 +80,7 @@ public class Order {
 	// 차감
 	void subtract() {
 		ProductManager pm = new ProductManager(ProductListDao.getInstance());
-		BuyManager manager = new BuyManager(ProductListDao.getInstance());
+
 		Connection conn = null;
 
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -100,15 +100,6 @@ public class Order {
 				System.out.print("구매하실 갯수를 선택해주세요.");
 				int orderQty = sc.nextInt();
 				System.out.println();
-
-				ProductList ProductList = new ProductList(orderCode, orderQty);
-				int result = dao.subtractProductList(conn, ProductList);
-				pm.buyList(orderCode, orderQty);
-
-				if (result > 0) {
-				} else {
-					System.out.println("주문 실패");
-				}
 
 			}
 		} catch (SQLException e) {

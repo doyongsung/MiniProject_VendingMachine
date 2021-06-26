@@ -202,8 +202,6 @@ public class ProductManager {
 		}
 	}
 
-	
-
 	void saleShowinfo() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		Order order = new Order(ProductListDao.getInstance());

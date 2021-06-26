@@ -17,7 +17,7 @@ public class BuyManager {
 	int totalPrice;
 	int itemQty;
 	int result;
-	int totalItemQty;
+
 
 	// 연결
 	Connection conn = null;
@@ -53,6 +53,7 @@ public class BuyManager {
 			for (ProductList pl : list) {
 				System.out.printf("%d \t %s \t %d \n", pl.getItemcode(), pl.getName(), pl.getPrice());
 			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +64,9 @@ public class BuyManager {
 	// 구매> 구매진행
 	void buy() {
 		Scanner sc = new Scanner(System.in);
-		ProductManager pm = new ProductManager(ProductListDao.getInstance());
+		int tPrice = 0;
+		int tItemQty = 0;
+		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			ArrayList<ProductList> buylist = new ArrayList<ProductList>();
@@ -75,7 +78,6 @@ public class BuyManager {
 				System.out.print("주문> 구매 갯수 : ");
 				buyQty = sc.nextInt();
 				System.out.println();
-				CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 
 				if (getItemQty(buyCode) > buyQty) {
 
@@ -110,18 +112,26 @@ public class BuyManager {
 						System.out.println("----------------- 구매 내역 ---------------------");
 						System.out.println("구매한 음료 이름 \t 구매한 음료 개수 \t 투입한 금액 \t");
 						System.out.println("-----------------------------------------------");
+
 						for (ProductList item : buylist) {
 							System.out.printf("%s \t\t %d \t\t %d \t\t \n", item.getName(), item.getPrice(),
 									item.getItemQty());
 
-							totalPrice += item.getItemQty();
-							totalItemQty += item.getPrice();
+							tPrice = tPrice + +item.getItemQty();
+							tItemQty = tItemQty + +item.getPrice();
+
+							ProductList ProductList = new ProductList(buyCode, tItemQty);
+							int result = dao.subtractProductList(conn, ProductList);
+							
+							if (result > 0) {
+
+							} else {
+								System.out.println("재고 조절 실패");
+							}
 						}
+
 						System.out.println("-----------------------------------------------");
-						System.out.printf("\t\t %s  \t  \t  ",totalItemQty);//,totalPrice);
-						System.out.println();
-						System.out.println("-----------------------------------------------");
-						coin.getChange(totalPrice);
+						coin.getChange(tPrice);
 						System.out.println("----------------- 구매 완료 ---------------------");
 						System.exit(0);
 						break;
@@ -140,7 +150,9 @@ public class BuyManager {
 							System.out.printf("%s %d", item.getName(), item.getPrice(), item.getPrice());
 							System.out.println("");
 						}
-						System.out.println("구매 완료");
+						System.out.println("-----------------------------------------------");
+						coin.getChange(totalPrice);
+						System.out.println("----------------- 구매 완료 ---------------------");
 						System.exit(0);
 						break;
 					}

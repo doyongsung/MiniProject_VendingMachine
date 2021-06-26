@@ -3,6 +3,7 @@ package Ven;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -34,7 +35,7 @@ public class CoinSearch {
 			if (editData > 0) {
 				CoinList coinlist = new CoinList(num, editData);
 
-				int result = dao.editDept(conn, coinlist);
+				int result = editDept(conn, coinlist);
 				if (result > 0) {
 					System.out.println("동전 정리");
 				} else {
@@ -51,12 +52,44 @@ public class CoinSearch {
 
 	}
 
+	int editDept(Connection conn, CoinList coinlist) {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "update MONEY set mcount=? where mkey=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, coinlist.getMoneyCount());
+			pstmt.setInt(2, coinlist.getMoenyKey());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return result;
+	}
+
 	void getChange(int num) {
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
-			System.out.println("투입된 금액 동전 	분류중..");
+			System.out.println("투입된 금액 동전 분류중..");
 
 			int[] coinlist = { 500, 100 };
 
