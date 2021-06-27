@@ -119,8 +119,9 @@ public class ProductManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (NumberFormatException e) {
+		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("잘못된정보입니다. 다시입력해주세요");
+			sc.nextInt();
 		}
 
 	}
@@ -284,7 +285,7 @@ public class ProductManager {
 		MainSelect main = new MainSelect();
 
 		Scanner sc = new Scanner(System.in);
-
+try {
 		System.out.println("------------- 관리자 모드 ------------");
 		System.out.println("1. 음료 재고 목록 조회");
 		System.out.println("2. 자판기 내 잔액 조회");
@@ -314,6 +315,10 @@ public class ProductManager {
 			break;
 
 		}
-
+}catch(NumberFormatException e) {
+	System.out.println("잘못된 입력입니다.");
+}catch(IllegalStateException e) {
+	System.out.println("잘못된 입력입니다.");
+}
 	}
 }
