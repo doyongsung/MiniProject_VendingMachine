@@ -50,8 +50,8 @@ public class Order {
 					if (num == 2) {
 						manager.SaleSelect();
 						if (num == 3) {
-							System.out.println("주문을 종료합니다.");
-							break;
+							System.out.println("종료합니다");
+							System.exit(0);
 						}
 					} else {
 						System.out.println("주문 실패");
