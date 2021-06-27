@@ -26,8 +26,6 @@ public class TotalSalseDao {
 
 		try {
 			stmt = conn.createStatement();
-			// String sql = "SELECT ITEMCODE, P.NAME, B.BUYQTY, B.TOTALPRICE FROM
-			// PRODUCTINFO P INNER JOIN BUYINFO B USING(ITEMCODE)";
 			String sql = "select b.itemcode, p.name, sum(b.buyqty), sum(b.totalprice) total "
 					+ "from PRODUCTINFO p , BUYINFO b "
 					+ "where b.itemcode = p.itemcode "
@@ -37,8 +35,6 @@ public class TotalSalseDao {
 			list = new ArrayList<>();
 
 			while (rs.next()) {
-				// TotalList PL = new
-				// TotalList(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
 				TotalList TL = new TotalList(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
 				list.add(TL);
 			}
@@ -51,7 +47,6 @@ public class TotalSalseDao {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -59,7 +54,6 @@ public class TotalSalseDao {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -12,9 +12,9 @@ public class MainSelect {
 		Login login = new Login();
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("================================================");
-		System.out.println("================ 자판기 프로그램 ===================");
-		System.out.println("================================================");
+		System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+		System.out.println("┃                Vending Machine               ┃");
+		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 		System.out.println();
 		while (true) {
 			try {
