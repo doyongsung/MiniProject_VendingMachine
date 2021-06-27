@@ -29,14 +29,12 @@ public class BuyManager {
 		sc = new Scanner(System.in);
 	}
 
-	
-	
 	// 구매> 음료 리스트 출력
 	void buyitemList() {
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			List<ProductList> list = dao.getProductList(conn);
-			
+
 			System.out.println("————————————————————————————————————————————————");
 			System.out.println(" 음료번호 \t\t 음료이름 \t\t 음료가격 ");
 			System.out.println("————————————————————————————————————————————————");
@@ -52,8 +50,6 @@ public class BuyManager {
 		}
 	}
 
-	
-	
 	// 구매> 구매진행
 	void buy() {
 		Scanner sc = new Scanner(System.in);
@@ -62,9 +58,12 @@ public class BuyManager {
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			ArrayList<ProductList> buylist = new ArrayList<ProductList>();
-			Order order = new Order(ProductListDao.getInstance());
 			
+			// 1. for 문 밖 ArrayList 선언
+			ArrayList<ProductList> buylist = new ArrayList<ProductList>();
+			
+			Order order = new Order(ProductListDao.getInstance());
+
 			for (;;) {
 				System.out.println("————————————————————————————————————————————————");
 				System.out.print("주문> 음료 선택 : ");
@@ -72,7 +71,7 @@ public class BuyManager {
 				System.out.print("주문> 구매 갯수 : ");
 				buyQty = sc.nextInt();
 				System.out.println();
-				
+
 				if (getItemQty(buyCode) > buyQty) {
 
 					ProductList numlist = new ProductList(buyCode);
@@ -81,16 +80,17 @@ public class BuyManager {
 					System.out.println("구매한 음료 \t 구매 개수 \t 총 가격 \t");
 					System.out.println("————————————————————————————————————————————————");
 
-					for (ProductList pl : list) {
+					for (ProductList pl : list) {				
 						totalPrice = pl.getPrice() * buyQty;
-
 						System.out.printf(" %s \t\t  %d \t\t  %d \t\t \n", pl.getName(), buyQty, totalPrice);
+						
+					    // 2. 구매시 이름, 개수, 총 가격을 buylist에 저장
 						buylist.add(new ProductList(pl.getName(), buyQty, totalPrice));
 					}
 
 					System.out.println("————————————————————————————————————————————————");
 					System.out.println("1. 추가 구매 \n2. 구매 취소 \n3. 구매 완료");
-					
+
 					int num = sc.nextInt();
 					inputBuyData();
 					switch (num) {
@@ -101,7 +101,7 @@ public class BuyManager {
 						MainTest.main(null);
 						break;
 					case 3:
-						
+
 						System.out.println("———————————————————— 구매내역 ————————————————————");
 						System.out.println("구매한 음료 \t 구매 개수 \t 투입 금액 \t");
 						System.out.println("————————————————————————————————————————————————");
@@ -110,12 +110,13 @@ public class BuyManager {
 							System.out.printf(" %s \t\t  %d \t\t  %d \t\t \n", item.getName(), item.getPrice(),
 									item.getItemQty());
 
+							// 반복문이 동작하며 저장된 가격과 개수를 계속 더하며 총 가격과 총 개수를 구한다.
 							tPrice = tPrice + +item.getItemQty();
 							tItemQty = tItemQty + +item.getPrice();
 
 							ProductList ProductList = new ProductList(buyCode, tItemQty);
 							int result = dao.subtractProductList(conn, ProductList);
-							
+
 							if (result > 0) {
 
 							} else {
@@ -124,7 +125,10 @@ public class BuyManager {
 						}
 
 						System.out.println("————————————————————————————————————————————————");
-						coin.getChange(tPrice);
+						
+						// 총 개수와 가격을 곱한 totalPrice를 인자로 동전변환 메소드를 호출한다.
+						coin.getChange(totalPrice);
+						order.subtract(buyCode, buyQty);
 						System.out.println("———————————————————— 구매완료 ————————————————————");
 						System.exit(0);
 						break;
@@ -139,13 +143,15 @@ public class BuyManager {
 						MainTest.main(null);
 						break;
 					case 3:
+						
+						
 						for (ProductList item : buylist) {
 							System.out.printf("%s %d", item.getName(), item.getPrice(), item.getPrice());
 							System.out.println("");
 						}
 						System.out.println("————————————————————————————————————————————————");
 						coin.getChange(totalPrice);
-						order.subtract(buyCode,buyQty);
+						order.subtract(buyCode, buyQty);
 						System.out.println("———————————————————— 구매완료 ————————————————————");
 						System.exit(0);
 						break;
@@ -158,8 +164,6 @@ public class BuyManager {
 		}
 	}
 
-	
-	
 	// 구매> 구매내역 저장
 	void inputBuyData() {
 		try {
@@ -172,8 +176,6 @@ public class BuyManager {
 		}
 	}
 
-	
-	
 	// 구매> 재고수량 체크
 	int getItemQty(int buyCode) {
 		int result = 0;

@@ -9,15 +9,16 @@ import java.util.ArrayList;
 
 public class TotalSalseDao {
 
-	private TotalSalseDao() {}
+	private TotalSalseDao() {
+	}
+
 	static private TotalSalseDao dao = new TotalSalseDao();
+
 	public static TotalSalseDao getInstance() {
 		return dao;
 	}
 
-
-	
-	//음료 판매량 조회
+	// 음료 판매량 조회
 	ArrayList<TotalList> gettTotalList(Connection conn) {
 
 		ArrayList<TotalList> list = null;
@@ -27,8 +28,7 @@ public class TotalSalseDao {
 		try {
 			stmt = conn.createStatement();
 			String sql = "select b.itemcode, p.name, sum(b.buyqty), sum(b.totalprice) total "
-					+ "from PRODUCTINFO p , BUYINFO b "
-					+ "where b.itemcode = p.itemcode "
+					+ "from PRODUCTINFO p , BUYINFO b " + "where b.itemcode = p.itemcode "
 					+ "group by b.itemcode, p.name order by total desc";
 
 			rs = stmt.executeQuery(sql);

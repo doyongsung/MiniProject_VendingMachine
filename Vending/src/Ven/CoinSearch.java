@@ -35,7 +35,7 @@ public class CoinSearch {
 			if (editData > 0) {
 				CoinList coinlist = new CoinList(num, editData);
 
-				int result = editDept(conn, coinlist);
+				int result = dao.editCoin(conn, coinlist);
 				if (result > 0) {
 					System.out.println("동전 정리");
 				} else {
@@ -52,59 +52,37 @@ public class CoinSearch {
 
 	}
 
-	int editDept(Connection conn, CoinList coinlist) {
-
-		int result = 0;
-
-		PreparedStatement pstmt = null;
-
-		try {
-			String sql = "update MONEY set mcount=? where mkey=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, coinlist.getMoneyCount());
-			pstmt.setInt(2, coinlist.getMoenyKey());
-
-			result = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return result;
-	}
-
-	void getChange(int num) {
+	// 넘겨 받은 totalPrice를 매개변수 tPrice로 받는다.
+	void getChange(int tPrice) {
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
 			System.out.println("투입된 금액 동전 분류중..");
 
+			// 선언한 배열
 			int[] coinlist = { 500, 100 };
 
+			// 선언한 배열 coinlist의 길이 만큼 반복
 			for (int i = 0; i < coinlist.length; i++) {
-				if ((num / coinlist[i]) > 0) {
 
-					CoinList coinlist1 = new CoinList(coinlist[i], num / coinlist[i]);
+				// 배열의 i번째 값 나누기 매개변수 tPrice로 나눈 값 즉, 아직 tPrice가 존재 할때 존재 할때 동작
+				if ((tPrice / coinlist[i]) > 0) {
 
+					// Coinlist 에 i번째 배열(동전의 가치)과 나눈 값(동전의 개수)을 저장
+					CoinList coinlist1 = new CoinList(coinlist[i], tPrice / coinlist[i]);
+
+					// dao.Upcoin 으로 인자 전달
 					int result = dao.UpCoin(conn, coinlist1);
 
+					// result가 올바르게 반환 되었는지 확인
 					if (result > 0) {
 					} else {
 						System.out.println("분류 실패");
 					}
-					num %= coinlist[i];
+
+					// tPrice의 나머지 값, 잔돈 구하기
+					tPrice %= coinlist[i];
 
 				}
 			}
@@ -116,6 +94,7 @@ public class CoinSearch {
 
 	}
 
+	// 코인 리스트 출력
 	void CoinList() {
 
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -128,6 +107,8 @@ public class CoinSearch {
 			try {
 				conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
+				
+				//dao.getCoinLists 의 결과값을 list에 저장
 				List<CoinList> list = dao.getCoinLists(conn);
 
 				System.out.println();
@@ -135,10 +116,11 @@ public class CoinSearch {
 				System.out.println("번호 \t 단위 \t\t 갯수 \t\t 총액");
 				System.out.println("————————————————————————————————————————————————");
 
+				//list를 호출
 				for (CoinList cl : list) {
-					System.out.printf("%d \t %s \t\t %d \t\t %d \n", cl.getMoenyKey(), cl.getMoneyName(),
+					System.out.printf("%d \t %s \t\t %d \t\t %d \n", 
+							cl.getMoenyKey(), cl.getMoneyName(),
 							cl.getMoneyCount(), cl.getMoenyAll());
-
 				}
 
 				System.out.println("————————————————————————————————————————————————");

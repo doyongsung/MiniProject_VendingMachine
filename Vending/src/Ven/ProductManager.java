@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class ProductManager {
 	private ProductListDao dao;
 	private Scanner sc;
-	
+
 	Connection conn = null;
 	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "hr";
@@ -21,10 +21,8 @@ public class ProductManager {
 		this.dao = dao;
 		sc = new Scanner(System.in);
 	}
-	
-	
-	
-	//관리자모드
+
+	// 관리자모드
 	void SaleSelect() {
 
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
@@ -33,7 +31,7 @@ public class ProductManager {
 		MainSelect main = new MainSelect();
 
 		Scanner sc = new Scanner(System.in);
-		
+
 		try {
 			System.out.println("———————————————————관리자 모드—————————————————————");
 			System.out.println();
@@ -66,21 +64,19 @@ public class ProductManager {
 				main.main();
 				break;
 			}
-				}catch(NumberFormatException e) {
-					System.out.println("잘못된 입력입니다.");
-				}catch(IllegalStateException e) {
-					System.out.println("잘못된 입력입니다.");
-				}
+		} catch (NumberFormatException e) {
+			System.out.println("잘못된 입력입니다.");
+		} catch (IllegalStateException e) {
+			System.out.println("잘못된 입력입니다.");
 		}
-	
-	
-	
-	//관리자> 재고목록조회
+	}
+
+	// 관리자> 재고목록조회
 	void saleShowinfo() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		Order order = new Order(ProductListDao.getInstance());
 		Scanner sc = new Scanner(System.in);
-		
+
 		while (true) {
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -126,15 +122,13 @@ public class ProductManager {
 		}
 	}
 
-	
-	
-	//음료 리스트
+	// 음료 리스트
 	void itemList() {
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			List<ProductList> list = dao.getProductList(conn);
-			
+
 			System.out.println("——————————————————— 음료 리스트 ———————————————————");
 			System.out.println("————————————————————————————————————————————————");
 			System.out.println("음료번호 \t 음료이름 \t\t 음료가격 \t\t 재고");
@@ -151,9 +145,7 @@ public class ProductManager {
 		}
 	}
 
-	
-	
-	//음료 추가
+	// 음료 추가
 	void inputData() {
 
 		try {
@@ -184,9 +176,7 @@ public class ProductManager {
 		}
 	}
 
-	
-	
-	//음료 수정
+	// 음료 수정
 	void update() {
 
 		try {
@@ -221,8 +211,6 @@ public class ProductManager {
 		}
 	}
 
-	
-	
 	// 음료 삭제
 	void delproduct() {
 
@@ -246,7 +234,5 @@ public class ProductManager {
 			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 	}
-	
-	
 
 }
