@@ -78,8 +78,7 @@ public class Order {
 	}
 
 	// 차감
-	void subtract() {
-		ProductManager pm = new ProductManager(ProductListDao.getInstance());
+	public void subtract(int buyCode,int buyQty) {
 
 		Connection conn = null;
 
@@ -87,21 +86,16 @@ public class Order {
 		String user = "hr";
 		String pw = "tiger";
 
+		buyCode = 0;
+		buyQty = 0;
+	
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-
-			while (true) {
-
-				System.out.println("-----------------------------------");
-				System.out.println("====================================");
-				System.out.print("구매하실 음료를 선택해주세요");
-				int orderCode = sc.nextInt();
-				System.out.println();
-				System.out.print("구매하실 갯수를 선택해주세요.");
-				int orderQty = sc.nextInt();
-				System.out.println();
-
-			}
+			ProductList ProductList = new ProductList(buyCode, buyQty);
+       int result = dao.subtractProductList(conn, ProductList);
+       if (result > 0) {
+       }
+       
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

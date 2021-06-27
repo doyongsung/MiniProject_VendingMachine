@@ -70,6 +70,7 @@ public class BuyManager {
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			ArrayList<ProductList> buylist = new ArrayList<ProductList>();
+			Order order = new Order(ProductListDao.getInstance());
 			for (;;) {
 
 				System.out.println("---------------------------------");
@@ -78,6 +79,7 @@ public class BuyManager {
 				System.out.print("주문> 구매 갯수 : ");
 				buyQty = sc.nextInt();
 				System.out.println();
+				
 
 				if (getItemQty(buyCode) > buyQty) {
 
@@ -98,6 +100,7 @@ public class BuyManager {
 					System.out.println("-----------------------------------------------");
 
 					System.out.println("1. 추가 구매 \n2. 구매 취소 \n3. 구매 완료");
+					
 					int num = sc.nextInt();
 					inputBuyData();
 					switch (num) {
@@ -108,7 +111,7 @@ public class BuyManager {
 						MainTest.main(null);
 						break;
 					case 3:
-
+						
 						System.out.println("----------------- 구매 내역 ---------------------");
 						System.out.println("구매한 음료 이름 \t 구매한 음료 개수 \t 투입한 금액 \t");
 						System.out.println("-----------------------------------------------");
@@ -152,11 +155,13 @@ public class BuyManager {
 						}
 						System.out.println("-----------------------------------------------");
 						coin.getChange(totalPrice);
+						order.subtract(buyCode,buyQty);
 						System.out.println("----------------- 구매 완료 ---------------------");
 						System.exit(0);
 						break;
 					}
 				}
+				
 			}
 
 		} catch (SQLException e) {
