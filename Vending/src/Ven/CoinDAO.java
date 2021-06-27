@@ -43,7 +43,9 @@ public class CoinDAO {
 			list = new ArrayList<>();
 
 			while (re2.next()) {
-				System.out.printf("======== 총 잔액 : %d ======== \n", re2.getInt(1));
+				System.out.printf("————————————————— 총 잔액  %d —————————————————",re2.getInt(1));
+				System.out.println();
+
 			}
 
 			while (rs.next()) {

@@ -130,16 +130,18 @@ public class CoinSearch {
 
 				List<CoinList> list = dao.getCoinLists(conn);
 
-				System.out.println("========== 동전 리스트 ==========");
-				System.out.println("번호 \t 단위 \t 갯수 \t 총액");
+				System.out.println();
+				System.out.println("——————————————————— 동전 리스트 ———————————————————");
+				System.out.println("번호 \t 단위 \t\t 갯수 \t\t 총액");
+				System.out.println("————————————————————————————————————————————————");
 
 				for (CoinList cl : list) {
-					System.out.printf("%d \t %s \t %d \t %d \n", cl.getMoenyKey(), cl.getMoneyName(),
+					System.out.printf("%d \t %s \t\t %d \t\t %d \n", cl.getMoenyKey(), cl.getMoneyName(),
 							cl.getMoneyCount(), cl.getMoenyAll());
 
 				}
 
-				System.out.println("==============================");
+				System.out.println("————————————————————————————————————————————————");
 
 				System.out.println("1. 오백원 관리");
 				System.out.println("2. 백원 관리");
