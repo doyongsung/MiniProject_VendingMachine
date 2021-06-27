@@ -19,9 +19,8 @@ public class Order {
 	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "hr";
 	String pw = "tiger";
-	
-	
-	//발주>
+
+	// 발주>
 	void order() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
 		try {
@@ -42,18 +41,21 @@ public class Order {
 					System.out.println("주문 완료");
 					System.out.println();
 
-					//주문 내용이 저장된 재고 목록 출력
+					// 주문 내용이 저장된 재고 목록 출력
 					manager.itemList();
 
 					System.out.println("1. 추가 발주 \n2. 뒤로가기 \n3. 종료");
 					int num = sc.nextInt();
-					if (num == 2) {
+					if (num == 1) {
+						System.out.println("추가 발주");
+						continue;
+					} else if (num == 2) {
 						manager.SaleSelect();
-						if (num == 3) {
-							System.out.println("종료합니다");
-							System.exit(0);
-						}
-					} else {
+					} else if (num == 3) {
+						System.out.println("종료합니다");
+						System.exit(0);
+					}
+					else {
 						System.out.println("주문 실패");
 					}
 				}
@@ -64,19 +66,18 @@ public class Order {
 		}
 	}
 
-	
-	
-	//차감
-	public void subtract(int buyCode,int buyQty) {
+	// 차감
+	public void subtract(int buyCode, int buyQty) {
 		buyCode = 0;
 		buyQty = 0;
-		
+
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			ProductList ProductList = new ProductList(buyCode, buyQty);
-       int result = dao.subtractProductList(conn, ProductList);
-       if (result > 0) {
-        }	} catch (SQLException e) {
+			int result = dao.subtractProductList(conn, ProductList);
+			if (result > 0) {
+			}
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
