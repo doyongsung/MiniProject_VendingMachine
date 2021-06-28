@@ -1,6 +1,7 @@
 package Ven;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -8,41 +9,28 @@ import java.util.Scanner;
 public class ProductManager implements DoInterface{
 	private ProductListDao dao;
 	private Scanner sc;
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
+
 	
-=======
-
-	Connection conn = null;
-	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-	String user = "hr";
-	String pw = "tiger";
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
-
 	public ProductManager(ProductListDao dao) {
 		this.dao = dao;
 		sc = new Scanner(System.in);
 	}
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
-	
+	JDBCconnecting con = new JDBCconnecting();
 	
 	private Connection conn = JDBCconnecting.connecting();
 	//관리자모드
-=======
+
 
 	// 관리자모드
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
 	void SaleSelect() {
 
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		SalesAmount sales = new SalesAmount(TotalSalseDao.getInstance());
 		Order order = new Order(ProductListDao.getInstance());
 		MainSelect main = new MainSelect();
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
-=======
 
 		Scanner sc = new Scanner(System.in);
 
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
 		try {
 			Product1();
 			int num = DoRefactoring.getInputInteger("원하시는 기능의 번호를 입력해주세요.");
@@ -74,14 +62,6 @@ public class ProductManager implements DoInterface{
 	// 관리자> 재고목록조회
 	void saleShowinfo() {
 		ProductManager manager = new ProductManager(ProductListDao.getInstance());
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
-
-		
-=======
-		Order order = new Order(ProductListDao.getInstance());
-		Scanner sc = new Scanner(System.in);
-
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
 		while (true) {
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -121,29 +101,23 @@ public class ProductManager implements DoInterface{
 	void itemList() {
 
 			List<ProductList> list = dao.getProductList(conn);
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
 			List();
-=======
+
 
 			System.out.println("——————————————————— 음료 리스트 ———————————————————");
 			System.out.println("————————————————————————————————————————————————");
 			System.out.println("음료번호 \t 음료이름 \t\t 음료가격 \t\t 재고");
 			System.out.println("————————————————————————————————————————————————");
 
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
+
 			for (ProductList pl : list) {
 				System.out.printf("  %d \t %s \t\t %d \t\t %d \n", pl.getItemcode(), pl.getName(), pl.getPrice(),
 						pl.getItemQty());
 			}
 			System.out.println("————————————————————————————————————————————————");
 	}
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
-	
-	//음료 추가
-=======
 
 	// 음료 추가
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
 	void inputData() {
 			Data();
 			String inputData = sc.nextLine();
@@ -160,18 +134,13 @@ public class ProductManager implements DoInterface{
 				System.out.println("입력 실패");
 			}
 	}
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
-	
-	//음료 수정
-=======
 
 	// 음료 수정
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
 	void update() {
 			updata();
 			String editData = sc.nextLine();
 			String[] eData = editData.split(" ");
-
+                         try {
 			ProductList productList = new ProductList(Integer.parseInt(eData[0]), eData[1], Integer.parseInt(eData[2]),
 					Integer.parseInt(eData[3]));
 
@@ -182,19 +151,13 @@ public class ProductManager implements DoInterface{
 			} else {
 				System.out.println("수정실패!!!");
 			}
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
-	}	
-	
-=======
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		} catch (NumberFormatException e) {
 			System.out.println("잘못된정보입니다. 다시입력해주세요");
 		}
 	}
 
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
+
 	// 음료 삭제
 	void delproduct() {
 			itemList();
@@ -208,9 +171,6 @@ public class ProductManager implements DoInterface{
 				System.out.println("해당 부서의 정보가 없습니다.");
 			}
 	}
-<<<<<<< HEAD:Vending/src/Ven/ProductManager.java
-=======
 
->>>>>>> dab1f360b8e30a61a470f4ac752c3e5cdb027a6c:VendingMachine/src/Ven/ProductManager.java
 }
 
