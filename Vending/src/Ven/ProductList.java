@@ -5,15 +5,14 @@ public class ProductList {
 	private int itemCode;
 	private String name;
 	private int price;
-
+	private int itemQty;
+	
 	public ProductList(String name, int price, int itemQty) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.itemQty = itemQty;
 	}
-
-	private int itemQty;
 
 	public ProductList(int itemCode, String name, int price, int itemQty) {
 		this.itemCode = itemCode;
