@@ -1,5 +1,6 @@
 package Ven;
 
+// 총 구매내역 정보를 저장하는 기능 클래스
 public class TotalList {
 
 	private int itemCode;
@@ -13,12 +14,6 @@ public class TotalList {
 		this.itemCode = itemCode;
 		this.name = name;
 		this.buyQty = buyQty;
-		this.totalPrice = totalPrice;
-	}
-
-	public TotalList(int itemCode, String name, int totalPrice) {
-		this.itemCode = itemCode;
-		this.name = name;
 		this.totalPrice = totalPrice;
 	}
 
@@ -83,3 +78,5 @@ public class TotalList {
 	}
 
 }
+
+
