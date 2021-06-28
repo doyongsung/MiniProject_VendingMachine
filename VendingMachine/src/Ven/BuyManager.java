@@ -45,7 +45,6 @@ public class BuyManager {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,10 +57,10 @@ public class BuyManager {
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			
+
 			// 1. for 문 밖 ArrayList 선언
 			ArrayList<ProductList> buylist = new ArrayList<ProductList>();
-			
+
 			Order order = new Order(ProductListDao.getInstance());
 
 			for (;;) {
@@ -80,11 +79,11 @@ public class BuyManager {
 					System.out.println("구매한 음료 \t 구매 개수 \t 총 가격 \t");
 					System.out.println("————————————————————————————————————————————————");
 
-					for (ProductList pl : list) {				
+					for (ProductList pl : list) {
 						totalPrice = pl.getPrice() * buyQty;
 						System.out.printf(" %s \t\t  %d \t\t  %d \t\t \n", pl.getName(), buyQty, totalPrice);
-						
-					    // 2. 구매시 이름, 개수, 총 가격을 buylist에 저장
+
+						// 2. 구매시 이름, 개수, 총 가격을 buylist에 저장
 						buylist.add(new ProductList(pl.getName(), buyQty, totalPrice));
 					}
 
@@ -93,6 +92,7 @@ public class BuyManager {
 
 					int num = sc.nextInt();
 					inputBuyData();
+
 					switch (num) {
 					case 1:
 						buyitemList();
@@ -107,8 +107,7 @@ public class BuyManager {
 						System.out.println("————————————————————————————————————————————————");
 
 						for (ProductList item : buylist) {
-							System.out.printf(" %s \t\t  %d \t\t  %d \t\t \n", item.getName(), item.getPrice(),
-									item.getItemQty());
+							System.out.printf(" %s \t\t  %d \t\t  %d \t\t \n", item.getName(), item.getPrice(),item.getItemQty());
 
 							// 반복문이 동작하며 저장된 가격과 개수를 계속 더하며 총 가격과 총 개수를 구한다.
 							tPrice = tPrice + +item.getItemQty();
@@ -125,7 +124,7 @@ public class BuyManager {
 						}
 
 						System.out.println("————————————————————————————————————————————————");
-						
+
 						// 총 개수와 가격을 곱한 totalPrice를 인자로 동전변환 메소드를 호출한다.
 						coin.getChange(totalPrice);
 						order.subtract(buyCode, buyQty);
@@ -138,13 +137,13 @@ public class BuyManager {
 					System.out.println("재고 부족");
 					System.out.println("1.추가 구매  \n2.구매 취소 \n3.구매 완료");
 					int num = sc.nextInt();
+					
 					switch (num) {
 					case 2:
 						MainTest.main(null);
 						break;
 					case 3:
-						
-						
+
 						for (ProductList item : buylist) {
 							System.out.printf("%s %d", item.getName(), item.getPrice(), item.getPrice());
 							System.out.println("");
@@ -159,7 +158,6 @@ public class BuyManager {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -171,7 +169,6 @@ public class BuyManager {
 			BuyList bList = new BuyList(buyQty, totalPrice, buyCode);
 			int result = dao.insertBuyInfo(conn, bList);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -184,7 +181,6 @@ public class BuyManager {
 			ProductList pList = new ProductList(buyCode);
 			result = dao.getItemQty(conn, pList);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;

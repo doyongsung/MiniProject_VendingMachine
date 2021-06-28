@@ -28,16 +28,16 @@ public class SalesAmount {
 
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			List<TotalList> list = dao.gettTotalList(conn);
+			List<BuyList> list = dao.gettTotalList(conn);
 
 			System.out.println("——————————————————— 매출 리스트 ———————————————————");
 			System.out.println("————————————————————————————————————————————————");
 			System.out.println("음료번호 \t 음료이름 \t  판매수량 \t 총 판매금액 ");
 			System.out.println("————————————————————————————————————————————————");
 
-			for (TotalList tList : list) {
-				System.out.printf("   %d \t %s \t  %d \t\t %d \n", tList.getItemcode(), tList.getName(),
-						tList.getBuyQty(), tList.getTotalPrice());
+			for (BuyList bList : list) {
+				System.out.printf("   %d \t %s \t  %d \t\t %d \n", bList.getItemCode(), bList.getName(),
+						bList.getBuyQty(), bList.getTotalPrice());
 
 			}
 
