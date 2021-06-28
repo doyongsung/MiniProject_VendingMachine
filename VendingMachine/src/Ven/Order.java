@@ -54,8 +54,7 @@ public class Order {
 					} else if (num == 3) {
 						System.out.println("종료합니다");
 						System.exit(0);
-					}
-					else {
+					} else {
 						System.out.println("주문 실패");
 					}
 				}

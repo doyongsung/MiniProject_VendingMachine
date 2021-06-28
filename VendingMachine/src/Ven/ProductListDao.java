@@ -240,7 +240,5 @@ public class ProductListDao {
 		}
 		return itemQty;
 	}
-	
-	
-	
+
 }
