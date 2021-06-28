@@ -31,11 +31,11 @@ public class TotalSalseDao {
 			String sql = "select b.itemcode, p.name, sum(b.buyqty), sum(b.totalprice) total "
 					+ "from PRODUCTINFO p , BUYINFO b " + "where b.itemcode = p.itemcode "
 					+ "group by b.itemcode, p.name order by total desc";
-			
-			// 결과 받아오기 
+
+			// 결과 받아오기
 			rs = stmt.executeQuery(sql);
 			list = new ArrayList<>();
-			
+
 			// 데이터를 TotalList 객체로 생성 -> list에 저장
 			while (rs.next()) {
 				TotalList TL = new TotalList(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));

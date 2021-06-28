@@ -1,4 +1,3 @@
-
 package Ven;
 
 import java.sql.Connection;
@@ -107,8 +106,7 @@ public class CoinSearch {
 			try {
 				conn = DriverManager.getConnection(jdbcUrl, user, pw);
 
-				
-				//dao.getCoinLists 의 결과값을 list에 저장
+				// dao.getCoinLists 의 결과값을 list에 저장
 				List<CoinList> list = dao.getCoinLists(conn);
 
 				System.out.println();
@@ -116,10 +114,9 @@ public class CoinSearch {
 				System.out.println("번호 \t 단위 \t\t 갯수 \t\t 총액");
 				System.out.println("————————————————————————————————————————————————");
 
-				//list를 호출
+				// list를 호출
 				for (CoinList cl : list) {
-					System.out.printf("%d \t %s \t\t %d \t\t %d \n", 
-							cl.getMoenyKey(), cl.getMoneyName(),
+					System.out.printf("%d \t %s \t\t %d \t\t %d \n", cl.getMoenyKey(), cl.getMoneyName(),
 							cl.getMoneyCount(), cl.getMoenyAll());
 				}
 

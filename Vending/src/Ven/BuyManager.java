@@ -58,10 +58,10 @@ public class BuyManager {
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		try {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
-			
+
 			// 1. for 문 밖 ArrayList 선언
 			ArrayList<ProductList> buylist = new ArrayList<ProductList>();
-			
+
 			Order order = new Order(ProductListDao.getInstance());
 
 			for (;;) {
@@ -80,11 +80,11 @@ public class BuyManager {
 					System.out.println("구매한 음료 \t 구매 개수 \t 총 가격 \t");
 					System.out.println("————————————————————————————————————————————————");
 
-					for (ProductList pl : list) {				
+					for (ProductList pl : list) {
 						totalPrice = pl.getPrice() * buyQty;
 						System.out.printf(" %s \t\t  %d \t\t  %d \t\t \n", pl.getName(), buyQty, totalPrice);
-						
-					    // 2. 구매시 이름, 개수, 총 가격을 buylist에 저장
+
+						// 2. 구매시 이름, 개수, 총 가격을 buylist에 저장
 						buylist.add(new ProductList(pl.getName(), buyQty, totalPrice));
 					}
 
@@ -125,7 +125,7 @@ public class BuyManager {
 						}
 
 						System.out.println("————————————————————————————————————————————————");
-						
+
 						// 총 개수와 가격을 곱한 totalPrice를 인자로 동전변환 메소드를 호출한다.
 						coin.getChange(totalPrice);
 						order.subtract(buyCode, buyQty);
@@ -143,8 +143,7 @@ public class BuyManager {
 						MainTest.main(null);
 						break;
 					case 3:
-						
-						
+
 						for (ProductList item : buylist) {
 							System.out.printf("%s %d", item.getName(), item.getPrice(), item.getPrice());
 							System.out.println("");

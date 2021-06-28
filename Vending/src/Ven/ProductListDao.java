@@ -10,15 +10,16 @@ import java.util.ArrayList;
 
 public class ProductListDao {
 
-	private ProductListDao() {}
+	private ProductListDao() {
+	}
+
 	static private ProductListDao dao = new ProductListDao();
+
 	public static ProductListDao getInstance() {
 		return dao;
 	}
 
-
-
-	//음료리스트
+	// 음료리스트
 	ArrayList<ProductList> getProductList(Connection conn) {
 
 		ArrayList<ProductList> list = null;
@@ -57,9 +58,7 @@ public class ProductListDao {
 		return list;
 	}
 
-	
-	
-	//음료정보수정
+	// 음료정보수정
 	int updateProductList(Connection conn, ProductList ProductList) {
 
 		int result = 0;
@@ -91,9 +90,7 @@ public class ProductListDao {
 		return result;
 	}
 
-	
-	
-	//새로운 음료 추가
+	// 새로운 음료 추가
 	int insertProductList(Connection conn, ProductList pList) {
 
 		int result = 0;
@@ -122,14 +119,12 @@ public class ProductListDao {
 		return result;
 	}
 
-	
-	
-	//발주> 재고 추가
+	// 발주> 재고 추가
 	int editProductList(Connection conn, ProductList ProductList) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			String sql = "update PRODUCTINFO set itemQty=itemQty+? where itemcode=?";
 			pstmt = conn.prepareStatement(sql);
@@ -152,9 +147,7 @@ public class ProductListDao {
 		return result;
 	}
 
-	
-	
-	//음료 삭제
+	// 음료 삭제
 	int deleteProduct(Connection conn, int itemcode) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -180,14 +173,12 @@ public class ProductListDao {
 		return result;
 	}
 
-	
-	
-	//구매> 음료이름, 가격 출력
+	// 구매> 음료이름, 가격 출력
 	ArrayList<ProductList> getBuylist(Connection conn, ProductList PList) {
 		ArrayList<ProductList> list = null;
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		
+
 		try {
 			String sql = "SELECT name,price FROM productinfo where itemcode = ?";
 			ps = conn.prepareStatement(sql);
@@ -223,14 +214,12 @@ public class ProductListDao {
 		}
 		return list;
 	}
-	
-	
-	
-	//구매> 재고수량 수정
+
+	// 구매> 재고수량 수정
 	int subtractProductList(Connection conn, ProductList ProductList) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			String sql = "update PRODUCTINFO set itemQty=itemQty-? where itemcode=?";
 			pstmt = conn.prepareStatement(sql);
@@ -253,13 +242,11 @@ public class ProductListDao {
 		return result;
 	}
 
-	
-	
-	//구매> 구매내역 저장
+	// 구매> 구매내역 저장
 	int insertBuyInfo(Connection conn, BuyList bList) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
+
 		try {
 			String sql = "INSERT INTO BUYINFO VALUES (BINFO_BCODE_SEQ.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
@@ -283,9 +270,7 @@ public class ProductListDao {
 		return result;
 	}
 
-	
-	
-	//구매> 재고수량 체크
+	// 구매> 재고수량 체크
 	int getItemQty(Connection conn, ProductList pList) {
 
 		int itemQty = 0;

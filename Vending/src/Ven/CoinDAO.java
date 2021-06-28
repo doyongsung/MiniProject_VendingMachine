@@ -1,4 +1,3 @@
-
 package Ven;
 
 import java.sql.Connection;
@@ -82,7 +81,6 @@ public class CoinDAO {
 
 	}
 
-	
 	// i번째 배열과, 나눈 값을 coinlist 매개변수로 받는다.
 	int UpCoin(Connection conn, CoinList coinlist) {
 
@@ -91,8 +89,8 @@ public class CoinDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			
-			// i번째 배열과 동일한 mvalue(= 동전의 가치)와 일치하는 칼럼에 있는 
+
+			// i번째 배열과 동일한 mvalue(= 동전의 가치)와 일치하는 칼럼에 있는
 			// mcount(= 동전의 개수) 에 나눈 값을 더한다.
 			String sql = "update MONEY set mcount=mcount+? where mvalue=?";
 
