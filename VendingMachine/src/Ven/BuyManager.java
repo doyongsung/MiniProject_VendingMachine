@@ -2,7 +2,6 @@ package Ven;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,9 @@ import java.util.Scanner;
 public class BuyManager {
 	private ProductListDao dao;
 	private Scanner sc;
+	private Scanner sc() {
+		return sc = new Scanner(System.in);
+	}
 
 	int buyCode;
 	int buyQty;
@@ -23,16 +25,20 @@ public class BuyManager {
 	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "hr";
 	String pw = "tiger";
+	
+	private void conn() throws SQLException {
+		conn = DriverManager.getConnection(jdbcUrl, user, pw);
+	}
 
 	public BuyManager(ProductListDao dao) {
 		this.dao = dao;
-		sc = new Scanner(System.in);
+		sc();
 	}
 
 	// 구매> 음료 리스트 출력
 	void buyitemList() {
 		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			conn();
 			List<ProductList> list = dao.getProductList(conn);
 
 			System.out.println("————————————————————————————————————————————————");
@@ -51,12 +57,12 @@ public class BuyManager {
 
 	// 구매> 구매진행
 	void buy() {
-		Scanner sc = new Scanner(System.in);
+		sc();
 		int tPrice = 0;
 		int tItemQty = 0;
 		CoinSearch coin = new CoinSearch(CoinDAO.getInstance());
 		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			conn();
 
 			// 1. for 문 밖 ArrayList 선언
 			ArrayList<ProductList> buylist = new ArrayList<ProductList>();
@@ -145,7 +151,7 @@ public class BuyManager {
 					case 3:
 
 						for (ProductList item : buylist) {
-							System.out.printf("%s %d", item.getName(), item.getPrice(), item.getPrice());
+							System.out.printf("%s %d %d", item.getName(), item.getPrice(), item.getPrice());
 							System.out.println("");
 						}
 						System.out.println("————————————————————————————————————————————————");
@@ -162,12 +168,13 @@ public class BuyManager {
 		}
 	}
 
+
 	// 구매> 구매내역 저장
 	void inputBuyData() {
 		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			conn();
 			BuyList bList = new BuyList(buyQty, totalPrice, buyCode);
-			int result = dao.insertBuyInfo(conn, bList);
+			result = dao.insertBuyInfo(conn, bList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -177,7 +184,7 @@ public class BuyManager {
 	int getItemQty(int buyCode) {
 		int result = 0;
 		try {
-			conn = DriverManager.getConnection(jdbcUrl, user, pw);
+			conn();
 			ProductList pList = new ProductList(buyCode);
 			result = dao.getItemQty(conn, pList);
 		} catch (SQLException e) {
@@ -185,4 +192,6 @@ public class BuyManager {
 		}
 		return result;
 	}
+
+	
 }
