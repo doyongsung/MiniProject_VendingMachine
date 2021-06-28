@@ -20,6 +20,7 @@ public class TotalSalseDao {
 	//음료 판매량 조회
 	ArrayList<TotalList> gettTotalList(Connection conn) {
 
+		// 데이터 베이스의 BuyInfo테이블 이용 select 결과를 -> list 저장
 		ArrayList<TotalList> list = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -30,10 +31,12 @@ public class TotalSalseDao {
 					+ "from PRODUCTINFO p , BUYINFO b "
 					+ "where b.itemcode = p.itemcode "
 					+ "group by b.itemcode, p.name order by total desc";
-
+			
+			// 결과 받아오기 
 			rs = stmt.executeQuery(sql);
 			list = new ArrayList<>();
-
+			
+			// 데이터를 TotalList 객체로 생성 -> list에 저장
 			while (rs.next()) {
 				TotalList TL = new TotalList(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
 				list.add(TL);
