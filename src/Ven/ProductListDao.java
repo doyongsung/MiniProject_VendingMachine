@@ -53,6 +53,7 @@ public class ProductListDao {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println("김지명");
 			}
 		}
 		return list;
